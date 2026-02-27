@@ -1,0 +1,5561 @@
+#[repr(transparent)]
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd)]
+pub struct Feature(u16);
+impl Feature {
+    #[doc = "Basic implementation"]
+    pub const FEATURE0: Self = Self(0x0);
+    #[doc = "Protection registers implemented"]
+    pub const FEATURE1: Self = Self(0x01);
+}
+impl Feature {
+    pub const fn from_bits(val: u16) -> Feature {
+        Self(val & 0xffff)
+    }
+    pub const fn to_bits(self) -> u16 {
+        self.0
+    }
+}
+impl core::fmt::Debug for Feature {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+        match self.0 {
+            0x0 => f.write_str("FEATURE0"),
+            0x01 => f.write_str("FEATURE1"),
+            other => core::write!(f, "0x{:02X}", other),
+        }
+    }
+}
+#[cfg(feature = "defmt")]
+impl defmt::Format for Feature {
+    fn format(&self, f: defmt::Formatter) {
+        match self.0 {
+            0x0 => defmt::write!(f, "FEATURE0"),
+            0x01 => defmt::write!(f, "FEATURE1"),
+            other => defmt::write!(f, "0x{:02X}", other),
+        }
+    }
+}
+impl From<u16> for Feature {
+    #[inline(always)]
+    fn from(val: u16) -> Feature {
+        Feature::from_bits(val)
+    }
+}
+impl From<Feature> for u16 {
+    #[inline(always)]
+    fn from(val: Feature) -> u16 {
+        Feature::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe0 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe0 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe0 {
+        Giwe0::from_bits(val)
+    }
+}
+impl From<Giwe0> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe0) -> u8 {
+        Giwe0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe1 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe1 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe1 {
+        Giwe1::from_bits(val)
+    }
+}
+impl From<Giwe1> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe1) -> u8 {
+        Giwe1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe10 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe10 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe10 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe10 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe10 {
+        Giwe10::from_bits(val)
+    }
+}
+impl From<Giwe10> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe10) -> u8 {
+        Giwe10::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe11 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe11 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe11 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe11 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe11 {
+        Giwe11::from_bits(val)
+    }
+}
+impl From<Giwe11> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe11) -> u8 {
+        Giwe11::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe12 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe12 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe12 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe12 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe12 {
+        Giwe12::from_bits(val)
+    }
+}
+impl From<Giwe12> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe12) -> u8 {
+        Giwe12::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe13 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe13 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe13 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe13 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe13 {
+        Giwe13::from_bits(val)
+    }
+}
+impl From<Giwe13> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe13) -> u8 {
+        Giwe13::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe14 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe14 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe14 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe14 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe14 {
+        Giwe14::from_bits(val)
+    }
+}
+impl From<Giwe14> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe14) -> u8 {
+        Giwe14::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe15 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe15 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe15 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe15 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe15 {
+        Giwe15::from_bits(val)
+    }
+}
+impl From<Giwe15> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe15) -> u8 {
+        Giwe15::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe16 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe16 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe16 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe16 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe16 {
+        Giwe16::from_bits(val)
+    }
+}
+impl From<Giwe16> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe16) -> u8 {
+        Giwe16::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe17 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe17 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe17 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe17 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe17 {
+        Giwe17::from_bits(val)
+    }
+}
+impl From<Giwe17> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe17) -> u8 {
+        Giwe17::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe18 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe18 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe18 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe18 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe18 {
+        Giwe18::from_bits(val)
+    }
+}
+impl From<Giwe18> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe18) -> u8 {
+        Giwe18::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe19 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe19 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe19 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe19 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe19 {
+        Giwe19::from_bits(val)
+    }
+}
+impl From<Giwe19> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe19) -> u8 {
+        Giwe19::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe2 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe2 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe2 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe2 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe2 {
+        Giwe2::from_bits(val)
+    }
+}
+impl From<Giwe2> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe2) -> u8 {
+        Giwe2::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe20 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe20 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe20 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe20 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe20 {
+        Giwe20::from_bits(val)
+    }
+}
+impl From<Giwe20> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe20) -> u8 {
+        Giwe20::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe21 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe21 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe21 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe21 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe21 {
+        Giwe21::from_bits(val)
+    }
+}
+impl From<Giwe21> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe21) -> u8 {
+        Giwe21::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe22 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe22 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe22 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe22 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe22 {
+        Giwe22::from_bits(val)
+    }
+}
+impl From<Giwe22> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe22) -> u8 {
+        Giwe22::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe23 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe23 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe23 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe23 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe23 {
+        Giwe23::from_bits(val)
+    }
+}
+impl From<Giwe23> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe23) -> u8 {
+        Giwe23::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe24 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe24 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe24 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe24 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe24 {
+        Giwe24::from_bits(val)
+    }
+}
+impl From<Giwe24> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe24) -> u8 {
+        Giwe24::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe25 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe25 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe25 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe25 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe25 {
+        Giwe25::from_bits(val)
+    }
+}
+impl From<Giwe25> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe25) -> u8 {
+        Giwe25::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe26 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe26 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe26 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe26 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe26 {
+        Giwe26::from_bits(val)
+    }
+}
+impl From<Giwe26> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe26) -> u8 {
+        Giwe26::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe27 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe27 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe27 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe27 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe27 {
+        Giwe27::from_bits(val)
+    }
+}
+impl From<Giwe27> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe27) -> u8 {
+        Giwe27::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe28 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe28 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe28 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe28 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe28 {
+        Giwe28::from_bits(val)
+    }
+}
+impl From<Giwe28> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe28) -> u8 {
+        Giwe28::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe29 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe29 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe29 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe29 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe29 {
+        Giwe29::from_bits(val)
+    }
+}
+impl From<Giwe29> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe29) -> u8 {
+        Giwe29::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe3 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe3 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe3 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe3 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe3 {
+        Giwe3::from_bits(val)
+    }
+}
+impl From<Giwe3> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe3) -> u8 {
+        Giwe3::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe30 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe30 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe30 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe30 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe30 {
+        Giwe30::from_bits(val)
+    }
+}
+impl From<Giwe30> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe30) -> u8 {
+        Giwe30::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe31 {
+    #[doc = "Not updated."]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe31 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe31 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe31 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe31 {
+        Giwe31::from_bits(val)
+    }
+}
+impl From<Giwe31> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe31) -> u8 {
+        Giwe31::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe4 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe4 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe4 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe4 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe4 {
+        Giwe4::from_bits(val)
+    }
+}
+impl From<Giwe4> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe4) -> u8 {
+        Giwe4::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe5 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe5 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe5 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe5 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe5 {
+        Giwe5::from_bits(val)
+    }
+}
+impl From<Giwe5> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe5) -> u8 {
+        Giwe5::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe6 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe6 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe6 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe6 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe6 {
+        Giwe6::from_bits(val)
+    }
+}
+impl From<Giwe6> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe6) -> u8 {
+        Giwe6::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe7 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe7 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe7 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe7 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe7 {
+        Giwe7::from_bits(val)
+    }
+}
+impl From<Giwe7> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe7) -> u8 {
+        Giwe7::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe8 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe8 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe8 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe8 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe8 {
+        Giwe8::from_bits(val)
+    }
+}
+impl From<Giwe8> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe8) -> u8 {
+        Giwe8::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Giwe9 {
+    #[doc = "Not updated"]
+    GIWE0 = 0x0,
+    #[doc = "Updated"]
+    GIWE1 = 0x01,
+}
+impl Giwe9 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Giwe9 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Giwe9 {
+    #[inline(always)]
+    fn from(val: u8) -> Giwe9 {
+        Giwe9::from_bits(val)
+    }
+}
+impl From<Giwe9> for u8 {
+    #[inline(always)]
+    fn from(val: Giwe9) -> u8 {
+        Giwe9::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Icnp {
+    #[doc = "Writable in Secure-Privilege state"]
+    ICNP0 = 0x0,
+    #[doc = "Not writable until the next reset"]
+    ICNP1 = 0x01,
+}
+impl Icnp {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Icnp {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Icnp {
+    #[inline(always)]
+    fn from(val: u8) -> Icnp {
+        Icnp::from_bits(val)
+    }
+}
+impl From<Icnp> for u8 {
+    #[inline(always)]
+    fn from(val: Icnp) -> u8 {
+        Icnp::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum IcnpNpe0 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl IcnpNpe0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> IcnpNpe0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for IcnpNpe0 {
+    #[inline(always)]
+    fn from(val: u8) -> IcnpNpe0 {
+        IcnpNpe0::from_bits(val)
+    }
+}
+impl From<IcnpNpe0> for u8 {
+    #[inline(always)]
+    fn from(val: IcnpNpe0) -> u8 {
+        IcnpNpe0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum IcnpNpe1 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl IcnpNpe1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> IcnpNpe1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for IcnpNpe1 {
+    #[inline(always)]
+    fn from(val: u8) -> IcnpNpe1 {
+        IcnpNpe1::from_bits(val)
+    }
+}
+impl From<IcnpNpe1> for u8 {
+    #[inline(always)]
+    fn from(val: IcnpNpe1) -> u8 {
+        IcnpNpe1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Icns {
+    #[doc = "Writable in Secure-Privilege state"]
+    ICNS0 = 0x0,
+    #[doc = "Not writable until the next reset"]
+    ICNS1 = 0x01,
+}
+impl Icns {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Icns {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Icns {
+    #[inline(always)]
+    fn from(val: u8) -> Icns {
+        Icns::from_bits(val)
+    }
+}
+impl From<Icns> for u8 {
+    #[inline(always)]
+    fn from(val: Icns) -> u8 {
+        Icns::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum IcnsNse0 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl IcnsNse0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> IcnsNse0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for IcnsNse0 {
+    #[inline(always)]
+    fn from(val: u8) -> IcnsNse0 {
+        IcnsNse0::from_bits(val)
+    }
+}
+impl From<IcnsNse0> for u8 {
+    #[inline(always)]
+    fn from(val: IcnsNse0) -> u8 {
+        IcnsNse0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum IcnsNse1 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl IcnsNse1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> IcnsNse1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for IcnsNse1 {
+    #[inline(always)]
+    fn from(val: u8) -> IcnsNse1 {
+        IcnsNse1::from_bits(val)
+    }
+}
+impl From<IcnsNse1> for u8 {
+    #[inline(always)]
+    fn from(val: IcnsNse1) -> u8 {
+        IcnsNse1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Irqc {
+    #[doc = "ISF is disabled"]
+    IRQC0 = 0x0,
+    #[doc = "ISF and DMA request on rising edge"]
+    IRQC1 = 0x01,
+    #[doc = "ISF and DMA request on falling edge"]
+    IRQC2 = 0x02,
+    #[doc = "ISF and DMA request on either edge"]
+    IRQC3 = 0x03,
+    _RESERVED_4 = 0x04,
+    #[doc = "ISF sets on rising edge"]
+    IRQC5 = 0x05,
+    #[doc = "ISF sets on falling edge"]
+    IRQC6 = 0x06,
+    #[doc = "ISF sets on either edge"]
+    IRQC7 = 0x07,
+    #[doc = "ISF and interrupt when logic 0"]
+    IRQC8 = 0x08,
+    #[doc = "ISF and interrupt on rising edge"]
+    IRQC9 = 0x09,
+    #[doc = "ISF and interrupt on falling edge"]
+    IRQC10 = 0x0a,
+    #[doc = "ISF and Interrupt on either edge"]
+    IRQC11 = 0x0b,
+    #[doc = "ISF and interrupt when logic 1"]
+    IRQC12 = 0x0c,
+    #[doc = "Enable active-high trigger output; ISF on rising edge (pin state is ORed with other enabled triggers to generate the output trigger for use by other peripherals)"]
+    IRQC13 = 0x0d,
+    #[doc = "Enable active-low trigger output; ISF on falling edge (pin state is inverted and ORed with other enabled triggers to generate the output trigger for use by other peripherals)"]
+    IRQC14 = 0x0e,
+    _RESERVED_f = 0x0f,
+}
+impl Irqc {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Irqc {
+        unsafe { core::mem::transmute(val & 0x0f) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Irqc {
+    #[inline(always)]
+    fn from(val: u8) -> Irqc {
+        Irqc::from_bits(val)
+    }
+}
+impl From<Irqc> for u8 {
+    #[inline(always)]
+    fn from(val: Irqc) -> u8 {
+        Irqc::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Irqs {
+    #[doc = "Interrupt, trigger output, or DMA request 0"]
+    IRQS0 = 0x0,
+    #[doc = "Interrupt, trigger output, or DMA request 1"]
+    IRQS1 = 0x01,
+}
+impl Irqs {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Irqs {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Irqs {
+    #[inline(always)]
+    fn from(val: u8) -> Irqs {
+        Irqs::from_bits(val)
+    }
+}
+impl From<Irqs> for u8 {
+    #[inline(always)]
+    fn from(val: Irqs) -> u8 {
+        Irqs::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf {
+    #[inline(always)]
+    fn from(val: u8) -> Isf {
+        Isf::from_bits(val)
+    }
+}
+impl From<Isf> for u8 {
+    #[inline(always)]
+    fn from(val: Isf) -> u8 {
+        Isf::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf0 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf0 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf0 {
+        Isf0::from_bits(val)
+    }
+}
+impl From<Isf0> for u8 {
+    #[inline(always)]
+    fn from(val: Isf0) -> u8 {
+        Isf0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf1 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf1 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf1 {
+        Isf1::from_bits(val)
+    }
+}
+impl From<Isf1> for u8 {
+    #[inline(always)]
+    fn from(val: Isf1) -> u8 {
+        Isf1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf10 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf10 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf10 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf10 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf10 {
+        Isf10::from_bits(val)
+    }
+}
+impl From<Isf10> for u8 {
+    #[inline(always)]
+    fn from(val: Isf10) -> u8 {
+        Isf10::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf11 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf11 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf11 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf11 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf11 {
+        Isf11::from_bits(val)
+    }
+}
+impl From<Isf11> for u8 {
+    #[inline(always)]
+    fn from(val: Isf11) -> u8 {
+        Isf11::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf12 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf12 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf12 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf12 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf12 {
+        Isf12::from_bits(val)
+    }
+}
+impl From<Isf12> for u8 {
+    #[inline(always)]
+    fn from(val: Isf12) -> u8 {
+        Isf12::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf13 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf13 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf13 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf13 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf13 {
+        Isf13::from_bits(val)
+    }
+}
+impl From<Isf13> for u8 {
+    #[inline(always)]
+    fn from(val: Isf13) -> u8 {
+        Isf13::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf14 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf14 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf14 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf14 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf14 {
+        Isf14::from_bits(val)
+    }
+}
+impl From<Isf14> for u8 {
+    #[inline(always)]
+    fn from(val: Isf14) -> u8 {
+        Isf14::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf15 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf15 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf15 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf15 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf15 {
+        Isf15::from_bits(val)
+    }
+}
+impl From<Isf15> for u8 {
+    #[inline(always)]
+    fn from(val: Isf15) -> u8 {
+        Isf15::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf16 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf16 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf16 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf16 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf16 {
+        Isf16::from_bits(val)
+    }
+}
+impl From<Isf16> for u8 {
+    #[inline(always)]
+    fn from(val: Isf16) -> u8 {
+        Isf16::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf17 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf17 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf17 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf17 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf17 {
+        Isf17::from_bits(val)
+    }
+}
+impl From<Isf17> for u8 {
+    #[inline(always)]
+    fn from(val: Isf17) -> u8 {
+        Isf17::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf18 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf18 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf18 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf18 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf18 {
+        Isf18::from_bits(val)
+    }
+}
+impl From<Isf18> for u8 {
+    #[inline(always)]
+    fn from(val: Isf18) -> u8 {
+        Isf18::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf19 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf19 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf19 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf19 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf19 {
+        Isf19::from_bits(val)
+    }
+}
+impl From<Isf19> for u8 {
+    #[inline(always)]
+    fn from(val: Isf19) -> u8 {
+        Isf19::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf2 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf2 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf2 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf2 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf2 {
+        Isf2::from_bits(val)
+    }
+}
+impl From<Isf2> for u8 {
+    #[inline(always)]
+    fn from(val: Isf2) -> u8 {
+        Isf2::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf20 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf20 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf20 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf20 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf20 {
+        Isf20::from_bits(val)
+    }
+}
+impl From<Isf20> for u8 {
+    #[inline(always)]
+    fn from(val: Isf20) -> u8 {
+        Isf20::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf21 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf21 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf21 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf21 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf21 {
+        Isf21::from_bits(val)
+    }
+}
+impl From<Isf21> for u8 {
+    #[inline(always)]
+    fn from(val: Isf21) -> u8 {
+        Isf21::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf22 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf22 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf22 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf22 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf22 {
+        Isf22::from_bits(val)
+    }
+}
+impl From<Isf22> for u8 {
+    #[inline(always)]
+    fn from(val: Isf22) -> u8 {
+        Isf22::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf23 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf23 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf23 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf23 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf23 {
+        Isf23::from_bits(val)
+    }
+}
+impl From<Isf23> for u8 {
+    #[inline(always)]
+    fn from(val: Isf23) -> u8 {
+        Isf23::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf24 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf24 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf24 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf24 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf24 {
+        Isf24::from_bits(val)
+    }
+}
+impl From<Isf24> for u8 {
+    #[inline(always)]
+    fn from(val: Isf24) -> u8 {
+        Isf24::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf25 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf25 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf25 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf25 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf25 {
+        Isf25::from_bits(val)
+    }
+}
+impl From<Isf25> for u8 {
+    #[inline(always)]
+    fn from(val: Isf25) -> u8 {
+        Isf25::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf26 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf26 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf26 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf26 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf26 {
+        Isf26::from_bits(val)
+    }
+}
+impl From<Isf26> for u8 {
+    #[inline(always)]
+    fn from(val: Isf26) -> u8 {
+        Isf26::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf27 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf27 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf27 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf27 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf27 {
+        Isf27::from_bits(val)
+    }
+}
+impl From<Isf27> for u8 {
+    #[inline(always)]
+    fn from(val: Isf27) -> u8 {
+        Isf27::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf28 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf28 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf28 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf28 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf28 {
+        Isf28::from_bits(val)
+    }
+}
+impl From<Isf28> for u8 {
+    #[inline(always)]
+    fn from(val: Isf28) -> u8 {
+        Isf28::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf29 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf29 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf29 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf29 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf29 {
+        Isf29::from_bits(val)
+    }
+}
+impl From<Isf29> for u8 {
+    #[inline(always)]
+    fn from(val: Isf29) -> u8 {
+        Isf29::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf3 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf3 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf3 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf3 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf3 {
+        Isf3::from_bits(val)
+    }
+}
+impl From<Isf3> for u8 {
+    #[inline(always)]
+    fn from(val: Isf3) -> u8 {
+        Isf3::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf30 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf30 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf30 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf30 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf30 {
+        Isf30::from_bits(val)
+    }
+}
+impl From<Isf30> for u8 {
+    #[inline(always)]
+    fn from(val: Isf30) -> u8 {
+        Isf30::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf31 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf31 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf31 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf31 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf31 {
+        Isf31::from_bits(val)
+    }
+}
+impl From<Isf31> for u8 {
+    #[inline(always)]
+    fn from(val: Isf31) -> u8 {
+        Isf31::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf4 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf4 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf4 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf4 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf4 {
+        Isf4::from_bits(val)
+    }
+}
+impl From<Isf4> for u8 {
+    #[inline(always)]
+    fn from(val: Isf4) -> u8 {
+        Isf4::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf5 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf5 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf5 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf5 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf5 {
+        Isf5::from_bits(val)
+    }
+}
+impl From<Isf5> for u8 {
+    #[inline(always)]
+    fn from(val: Isf5) -> u8 {
+        Isf5::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf6 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf6 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf6 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf6 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf6 {
+        Isf6::from_bits(val)
+    }
+}
+impl From<Isf6> for u8 {
+    #[inline(always)]
+    fn from(val: Isf6) -> u8 {
+        Isf6::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf7 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf7 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf7 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf7 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf7 {
+        Isf7::from_bits(val)
+    }
+}
+impl From<Isf7> for u8 {
+    #[inline(always)]
+    fn from(val: Isf7) -> u8 {
+        Isf7::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf8 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf8 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf8 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf8 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf8 {
+        Isf8::from_bits(val)
+    }
+}
+impl From<Isf8> for u8 {
+    #[inline(always)]
+    fn from(val: Isf8) -> u8 {
+        Isf8::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Isf9 {
+    #[doc = "Not detected"]
+    ISF0 = 0x0,
+    #[doc = "Detected"]
+    ISF1 = 0x01,
+}
+impl Isf9 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Isf9 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Isf9 {
+    #[inline(always)]
+    fn from(val: u8) -> Isf9 {
+        Isf9::from_bits(val)
+    }
+}
+impl From<Isf9> for u8 {
+    #[inline(always)]
+    fn from(val: Isf9) -> u8 {
+        Isf9::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Lk {
+    #[doc = "Not locked"]
+    LK0 = 0x0,
+    #[doc = "Locked"]
+    LK1 = 0x01,
+}
+impl Lk {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Lk {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Lk {
+    #[inline(always)]
+    fn from(val: u8) -> Lk {
+        Lk::from_bits(val)
+    }
+}
+impl From<Lk> for u8 {
+    #[inline(always)]
+    fn from(val: Lk) -> u8 {
+        Lk::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe10 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe10 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe10 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe10 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe10 {
+        Npe10::from_bits(val)
+    }
+}
+impl From<Npe10> for u8 {
+    #[inline(always)]
+    fn from(val: Npe10) -> u8 {
+        Npe10::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe11 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe11 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe11 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe11 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe11 {
+        Npe11::from_bits(val)
+    }
+}
+impl From<Npe11> for u8 {
+    #[inline(always)]
+    fn from(val: Npe11) -> u8 {
+        Npe11::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe12 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe12 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe12 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe12 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe12 {
+        Npe12::from_bits(val)
+    }
+}
+impl From<Npe12> for u8 {
+    #[inline(always)]
+    fn from(val: Npe12) -> u8 {
+        Npe12::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe13 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe13 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe13 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe13 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe13 {
+        Npe13::from_bits(val)
+    }
+}
+impl From<Npe13> for u8 {
+    #[inline(always)]
+    fn from(val: Npe13) -> u8 {
+        Npe13::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe14 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe14 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe14 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe14 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe14 {
+        Npe14::from_bits(val)
+    }
+}
+impl From<Npe14> for u8 {
+    #[inline(always)]
+    fn from(val: Npe14) -> u8 {
+        Npe14::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe15 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe15 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe15 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe15 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe15 {
+        Npe15::from_bits(val)
+    }
+}
+impl From<Npe15> for u8 {
+    #[inline(always)]
+    fn from(val: Npe15) -> u8 {
+        Npe15::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe16 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe16 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe16 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe16 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe16 {
+        Npe16::from_bits(val)
+    }
+}
+impl From<Npe16> for u8 {
+    #[inline(always)]
+    fn from(val: Npe16) -> u8 {
+        Npe16::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe17 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe17 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe17 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe17 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe17 {
+        Npe17::from_bits(val)
+    }
+}
+impl From<Npe17> for u8 {
+    #[inline(always)]
+    fn from(val: Npe17) -> u8 {
+        Npe17::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe18 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe18 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe18 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe18 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe18 {
+        Npe18::from_bits(val)
+    }
+}
+impl From<Npe18> for u8 {
+    #[inline(always)]
+    fn from(val: Npe18) -> u8 {
+        Npe18::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe19 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe19 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe19 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe19 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe19 {
+        Npe19::from_bits(val)
+    }
+}
+impl From<Npe19> for u8 {
+    #[inline(always)]
+    fn from(val: Npe19) -> u8 {
+        Npe19::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe2 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe2 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe2 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe2 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe2 {
+        Npe2::from_bits(val)
+    }
+}
+impl From<Npe2> for u8 {
+    #[inline(always)]
+    fn from(val: Npe2) -> u8 {
+        Npe2::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe20 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe20 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe20 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe20 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe20 {
+        Npe20::from_bits(val)
+    }
+}
+impl From<Npe20> for u8 {
+    #[inline(always)]
+    fn from(val: Npe20) -> u8 {
+        Npe20::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe21 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe21 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe21 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe21 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe21 {
+        Npe21::from_bits(val)
+    }
+}
+impl From<Npe21> for u8 {
+    #[inline(always)]
+    fn from(val: Npe21) -> u8 {
+        Npe21::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe22 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe22 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe22 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe22 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe22 {
+        Npe22::from_bits(val)
+    }
+}
+impl From<Npe22> for u8 {
+    #[inline(always)]
+    fn from(val: Npe22) -> u8 {
+        Npe22::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe23 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe23 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe23 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe23 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe23 {
+        Npe23::from_bits(val)
+    }
+}
+impl From<Npe23> for u8 {
+    #[inline(always)]
+    fn from(val: Npe23) -> u8 {
+        Npe23::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe24 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe24 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe24 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe24 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe24 {
+        Npe24::from_bits(val)
+    }
+}
+impl From<Npe24> for u8 {
+    #[inline(always)]
+    fn from(val: Npe24) -> u8 {
+        Npe24::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe25 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe25 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe25 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe25 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe25 {
+        Npe25::from_bits(val)
+    }
+}
+impl From<Npe25> for u8 {
+    #[inline(always)]
+    fn from(val: Npe25) -> u8 {
+        Npe25::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe26 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe26 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe26 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe26 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe26 {
+        Npe26::from_bits(val)
+    }
+}
+impl From<Npe26> for u8 {
+    #[inline(always)]
+    fn from(val: Npe26) -> u8 {
+        Npe26::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe27 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe27 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe27 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe27 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe27 {
+        Npe27::from_bits(val)
+    }
+}
+impl From<Npe27> for u8 {
+    #[inline(always)]
+    fn from(val: Npe27) -> u8 {
+        Npe27::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe28 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe28 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe28 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe28 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe28 {
+        Npe28::from_bits(val)
+    }
+}
+impl From<Npe28> for u8 {
+    #[inline(always)]
+    fn from(val: Npe28) -> u8 {
+        Npe28::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe29 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe29 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe29 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe29 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe29 {
+        Npe29::from_bits(val)
+    }
+}
+impl From<Npe29> for u8 {
+    #[inline(always)]
+    fn from(val: Npe29) -> u8 {
+        Npe29::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe3 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe3 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe3 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe3 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe3 {
+        Npe3::from_bits(val)
+    }
+}
+impl From<Npe3> for u8 {
+    #[inline(always)]
+    fn from(val: Npe3) -> u8 {
+        Npe3::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe30 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe30 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe30 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe30 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe30 {
+        Npe30::from_bits(val)
+    }
+}
+impl From<Npe30> for u8 {
+    #[inline(always)]
+    fn from(val: Npe30) -> u8 {
+        Npe30::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe31 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe31 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe31 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe31 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe31 {
+        Npe31::from_bits(val)
+    }
+}
+impl From<Npe31> for u8 {
+    #[inline(always)]
+    fn from(val: Npe31) -> u8 {
+        Npe31::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe4 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe4 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe4 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe4 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe4 {
+        Npe4::from_bits(val)
+    }
+}
+impl From<Npe4> for u8 {
+    #[inline(always)]
+    fn from(val: Npe4) -> u8 {
+        Npe4::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe5 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe5 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe5 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe5 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe5 {
+        Npe5::from_bits(val)
+    }
+}
+impl From<Npe5> for u8 {
+    #[inline(always)]
+    fn from(val: Npe5) -> u8 {
+        Npe5::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe6 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe6 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe6 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe6 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe6 {
+        Npe6::from_bits(val)
+    }
+}
+impl From<Npe6> for u8 {
+    #[inline(always)]
+    fn from(val: Npe6) -> u8 {
+        Npe6::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe7 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe7 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe7 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe7 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe7 {
+        Npe7::from_bits(val)
+    }
+}
+impl From<Npe7> for u8 {
+    #[inline(always)]
+    fn from(val: Npe7) -> u8 {
+        Npe7::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe8 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe8 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe8 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe8 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe8 {
+        Npe8::from_bits(val)
+    }
+}
+impl From<Npe8> for u8 {
+    #[inline(always)]
+    fn from(val: Npe8) -> u8 {
+        Npe8::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Npe9 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl Npe9 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Npe9 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Npe9 {
+    #[inline(always)]
+    fn from(val: u8) -> Npe9 {
+        Npe9::from_bits(val)
+    }
+}
+impl From<Npe9> for u8 {
+    #[inline(always)]
+    fn from(val: Npe9) -> u8 {
+        Npe9::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse10 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse10 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse10 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse10 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse10 {
+        Nse10::from_bits(val)
+    }
+}
+impl From<Nse10> for u8 {
+    #[inline(always)]
+    fn from(val: Nse10) -> u8 {
+        Nse10::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse11 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse11 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse11 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse11 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse11 {
+        Nse11::from_bits(val)
+    }
+}
+impl From<Nse11> for u8 {
+    #[inline(always)]
+    fn from(val: Nse11) -> u8 {
+        Nse11::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse12 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse12 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse12 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse12 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse12 {
+        Nse12::from_bits(val)
+    }
+}
+impl From<Nse12> for u8 {
+    #[inline(always)]
+    fn from(val: Nse12) -> u8 {
+        Nse12::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse13 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse13 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse13 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse13 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse13 {
+        Nse13::from_bits(val)
+    }
+}
+impl From<Nse13> for u8 {
+    #[inline(always)]
+    fn from(val: Nse13) -> u8 {
+        Nse13::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse14 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse14 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse14 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse14 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse14 {
+        Nse14::from_bits(val)
+    }
+}
+impl From<Nse14> for u8 {
+    #[inline(always)]
+    fn from(val: Nse14) -> u8 {
+        Nse14::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse15 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse15 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse15 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse15 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse15 {
+        Nse15::from_bits(val)
+    }
+}
+impl From<Nse15> for u8 {
+    #[inline(always)]
+    fn from(val: Nse15) -> u8 {
+        Nse15::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse16 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse16 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse16 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse16 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse16 {
+        Nse16::from_bits(val)
+    }
+}
+impl From<Nse16> for u8 {
+    #[inline(always)]
+    fn from(val: Nse16) -> u8 {
+        Nse16::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse17 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse17 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse17 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse17 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse17 {
+        Nse17::from_bits(val)
+    }
+}
+impl From<Nse17> for u8 {
+    #[inline(always)]
+    fn from(val: Nse17) -> u8 {
+        Nse17::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse18 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse18 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse18 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse18 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse18 {
+        Nse18::from_bits(val)
+    }
+}
+impl From<Nse18> for u8 {
+    #[inline(always)]
+    fn from(val: Nse18) -> u8 {
+        Nse18::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse19 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse19 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse19 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse19 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse19 {
+        Nse19::from_bits(val)
+    }
+}
+impl From<Nse19> for u8 {
+    #[inline(always)]
+    fn from(val: Nse19) -> u8 {
+        Nse19::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse2 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse2 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse2 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse2 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse2 {
+        Nse2::from_bits(val)
+    }
+}
+impl From<Nse2> for u8 {
+    #[inline(always)]
+    fn from(val: Nse2) -> u8 {
+        Nse2::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse20 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse20 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse20 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse20 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse20 {
+        Nse20::from_bits(val)
+    }
+}
+impl From<Nse20> for u8 {
+    #[inline(always)]
+    fn from(val: Nse20) -> u8 {
+        Nse20::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse21 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse21 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse21 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse21 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse21 {
+        Nse21::from_bits(val)
+    }
+}
+impl From<Nse21> for u8 {
+    #[inline(always)]
+    fn from(val: Nse21) -> u8 {
+        Nse21::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse22 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse22 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse22 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse22 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse22 {
+        Nse22::from_bits(val)
+    }
+}
+impl From<Nse22> for u8 {
+    #[inline(always)]
+    fn from(val: Nse22) -> u8 {
+        Nse22::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse23 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse23 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse23 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse23 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse23 {
+        Nse23::from_bits(val)
+    }
+}
+impl From<Nse23> for u8 {
+    #[inline(always)]
+    fn from(val: Nse23) -> u8 {
+        Nse23::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse24 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse24 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse24 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse24 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse24 {
+        Nse24::from_bits(val)
+    }
+}
+impl From<Nse24> for u8 {
+    #[inline(always)]
+    fn from(val: Nse24) -> u8 {
+        Nse24::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse25 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse25 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse25 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse25 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse25 {
+        Nse25::from_bits(val)
+    }
+}
+impl From<Nse25> for u8 {
+    #[inline(always)]
+    fn from(val: Nse25) -> u8 {
+        Nse25::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse26 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse26 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse26 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse26 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse26 {
+        Nse26::from_bits(val)
+    }
+}
+impl From<Nse26> for u8 {
+    #[inline(always)]
+    fn from(val: Nse26) -> u8 {
+        Nse26::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse27 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse27 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse27 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse27 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse27 {
+        Nse27::from_bits(val)
+    }
+}
+impl From<Nse27> for u8 {
+    #[inline(always)]
+    fn from(val: Nse27) -> u8 {
+        Nse27::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse28 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse28 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse28 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse28 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse28 {
+        Nse28::from_bits(val)
+    }
+}
+impl From<Nse28> for u8 {
+    #[inline(always)]
+    fn from(val: Nse28) -> u8 {
+        Nse28::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse29 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse29 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse29 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse29 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse29 {
+        Nse29::from_bits(val)
+    }
+}
+impl From<Nse29> for u8 {
+    #[inline(always)]
+    fn from(val: Nse29) -> u8 {
+        Nse29::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse3 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse3 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse3 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse3 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse3 {
+        Nse3::from_bits(val)
+    }
+}
+impl From<Nse3> for u8 {
+    #[inline(always)]
+    fn from(val: Nse3) -> u8 {
+        Nse3::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse30 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse30 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse30 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse30 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse30 {
+        Nse30::from_bits(val)
+    }
+}
+impl From<Nse30> for u8 {
+    #[inline(always)]
+    fn from(val: Nse30) -> u8 {
+        Nse30::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse31 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse31 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse31 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse31 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse31 {
+        Nse31::from_bits(val)
+    }
+}
+impl From<Nse31> for u8 {
+    #[inline(always)]
+    fn from(val: Nse31) -> u8 {
+        Nse31::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse4 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse4 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse4 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse4 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse4 {
+        Nse4::from_bits(val)
+    }
+}
+impl From<Nse4> for u8 {
+    #[inline(always)]
+    fn from(val: Nse4) -> u8 {
+        Nse4::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse5 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse5 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse5 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse5 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse5 {
+        Nse5::from_bits(val)
+    }
+}
+impl From<Nse5> for u8 {
+    #[inline(always)]
+    fn from(val: Nse5) -> u8 {
+        Nse5::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse6 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse6 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse6 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse6 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse6 {
+        Nse6::from_bits(val)
+    }
+}
+impl From<Nse6> for u8 {
+    #[inline(always)]
+    fn from(val: Nse6) -> u8 {
+        Nse6::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse7 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse7 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse7 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse7 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse7 {
+        Nse7::from_bits(val)
+    }
+}
+impl From<Nse7> for u8 {
+    #[inline(always)]
+    fn from(val: Nse7) -> u8 {
+        Nse7::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse8 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse8 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse8 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse8 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse8 {
+        Nse8::from_bits(val)
+    }
+}
+impl From<Nse8> for u8 {
+    #[inline(always)]
+    fn from(val: Nse8) -> u8 {
+        Nse8::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Nse9 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl Nse9 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Nse9 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Nse9 {
+    #[inline(always)]
+    fn from(val: u8) -> Nse9 {
+        Nse9::from_bits(val)
+    }
+}
+impl From<Nse9> for u8 {
+    #[inline(always)]
+    fn from(val: Nse9) -> u8 {
+        Nse9::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pcnp {
+    #[doc = "Writable in Secure-Privilege state"]
+    PCNP0 = 0x0,
+    #[doc = "Not writable until the next reset"]
+    PCNP1 = 0x01,
+}
+impl Pcnp {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pcnp {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pcnp {
+    #[inline(always)]
+    fn from(val: u8) -> Pcnp {
+        Pcnp::from_bits(val)
+    }
+}
+impl From<Pcnp> for u8 {
+    #[inline(always)]
+    fn from(val: Pcnp) -> u8 {
+        Pcnp::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum PcnpNpe0 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl PcnpNpe0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> PcnpNpe0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for PcnpNpe0 {
+    #[inline(always)]
+    fn from(val: u8) -> PcnpNpe0 {
+        PcnpNpe0::from_bits(val)
+    }
+}
+impl From<PcnpNpe0> for u8 {
+    #[inline(always)]
+    fn from(val: PcnpNpe0) -> u8 {
+        PcnpNpe0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum PcnpNpe1 {
+    #[doc = "Privilege access"]
+    NPE0 = 0x0,
+    #[doc = "Nonprivilege access"]
+    NPE1 = 0x01,
+}
+impl PcnpNpe1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> PcnpNpe1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for PcnpNpe1 {
+    #[inline(always)]
+    fn from(val: u8) -> PcnpNpe1 {
+        PcnpNpe1::from_bits(val)
+    }
+}
+impl From<PcnpNpe1> for u8 {
+    #[inline(always)]
+    fn from(val: PcnpNpe1) -> u8 {
+        PcnpNpe1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pcns {
+    #[doc = "Writable in Secure-Privilege state"]
+    PCNS0 = 0x0,
+    #[doc = "Not writable until the next reset"]
+    PCNS1 = 0x01,
+}
+impl Pcns {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pcns {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pcns {
+    #[inline(always)]
+    fn from(val: u8) -> Pcns {
+        Pcns::from_bits(val)
+    }
+}
+impl From<Pcns> for u8 {
+    #[inline(always)]
+    fn from(val: Pcns) -> u8 {
+        Pcns::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum PcnsNse0 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl PcnsNse0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> PcnsNse0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for PcnsNse0 {
+    #[inline(always)]
+    fn from(val: u8) -> PcnsNse0 {
+        PcnsNse0::from_bits(val)
+    }
+}
+impl From<PcnsNse0> for u8 {
+    #[inline(always)]
+    fn from(val: PcnsNse0) -> u8 {
+        PcnsNse0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum PcnsNse1 {
+    #[doc = "Secure access"]
+    NSE0 = 0x0,
+    #[doc = "Nonsecure access"]
+    NSE1 = 0x01,
+}
+impl PcnsNse1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> PcnsNse1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for PcnsNse1 {
+    #[inline(always)]
+    fn from(val: u8) -> PcnsNse1 {
+        PcnsNse1::from_bits(val)
+    }
+}
+impl From<PcnsNse1> for u8 {
+    #[inline(always)]
+    fn from(val: PcnsNse1) -> u8 {
+        PcnsNse1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pd {
+    #[doc = "Logic zero"]
+    PD0 = 0x0,
+    #[doc = "Logic one"]
+    PD1 = 0x01,
+}
+impl Pd {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pd {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pd {
+    #[inline(always)]
+    fn from(val: u8) -> Pd {
+        Pd::from_bits(val)
+    }
+}
+impl From<Pd> for u8 {
+    #[inline(always)]
+    fn from(val: Pd) -> u8 {
+        Pd::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdd {
+    #[doc = "Input"]
+    PDD0 = 0x0,
+    #[doc = "Output"]
+    PDD1 = 0x01,
+}
+impl Pdd {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdd {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdd {
+    #[inline(always)]
+    fn from(val: u8) -> Pdd {
+        Pdd::from_bits(val)
+    }
+}
+impl From<Pdd> for u8 {
+    #[inline(always)]
+    fn from(val: Pdd) -> u8 {
+        Pdd::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo0 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo0 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo0 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo0 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo0 {
+        Pdo0::from_bits(val)
+    }
+}
+impl From<Pdo0> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo0) -> u8 {
+        Pdo0::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo1 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo1 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo1 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo1 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo1 {
+        Pdo1::from_bits(val)
+    }
+}
+impl From<Pdo1> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo1) -> u8 {
+        Pdo1::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo10 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo10 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo10 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo10 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo10 {
+        Pdo10::from_bits(val)
+    }
+}
+impl From<Pdo10> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo10) -> u8 {
+        Pdo10::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo11 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo11 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo11 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo11 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo11 {
+        Pdo11::from_bits(val)
+    }
+}
+impl From<Pdo11> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo11) -> u8 {
+        Pdo11::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo12 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo12 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo12 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo12 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo12 {
+        Pdo12::from_bits(val)
+    }
+}
+impl From<Pdo12> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo12) -> u8 {
+        Pdo12::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo13 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo13 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo13 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo13 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo13 {
+        Pdo13::from_bits(val)
+    }
+}
+impl From<Pdo13> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo13) -> u8 {
+        Pdo13::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo14 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo14 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo14 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo14 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo14 {
+        Pdo14::from_bits(val)
+    }
+}
+impl From<Pdo14> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo14) -> u8 {
+        Pdo14::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo15 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo15 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo15 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo15 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo15 {
+        Pdo15::from_bits(val)
+    }
+}
+impl From<Pdo15> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo15) -> u8 {
+        Pdo15::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo16 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo16 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo16 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo16 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo16 {
+        Pdo16::from_bits(val)
+    }
+}
+impl From<Pdo16> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo16) -> u8 {
+        Pdo16::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo17 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo17 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo17 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo17 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo17 {
+        Pdo17::from_bits(val)
+    }
+}
+impl From<Pdo17> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo17) -> u8 {
+        Pdo17::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo18 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo18 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo18 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo18 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo18 {
+        Pdo18::from_bits(val)
+    }
+}
+impl From<Pdo18> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo18) -> u8 {
+        Pdo18::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo19 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo19 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo19 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo19 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo19 {
+        Pdo19::from_bits(val)
+    }
+}
+impl From<Pdo19> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo19) -> u8 {
+        Pdo19::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo2 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo2 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo2 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo2 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo2 {
+        Pdo2::from_bits(val)
+    }
+}
+impl From<Pdo2> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo2) -> u8 {
+        Pdo2::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo20 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo20 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo20 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo20 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo20 {
+        Pdo20::from_bits(val)
+    }
+}
+impl From<Pdo20> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo20) -> u8 {
+        Pdo20::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo21 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo21 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo21 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo21 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo21 {
+        Pdo21::from_bits(val)
+    }
+}
+impl From<Pdo21> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo21) -> u8 {
+        Pdo21::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo22 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo22 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo22 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo22 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo22 {
+        Pdo22::from_bits(val)
+    }
+}
+impl From<Pdo22> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo22) -> u8 {
+        Pdo22::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo23 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo23 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo23 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo23 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo23 {
+        Pdo23::from_bits(val)
+    }
+}
+impl From<Pdo23> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo23) -> u8 {
+        Pdo23::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo24 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo24 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo24 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo24 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo24 {
+        Pdo24::from_bits(val)
+    }
+}
+impl From<Pdo24> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo24) -> u8 {
+        Pdo24::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo25 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo25 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo25 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo25 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo25 {
+        Pdo25::from_bits(val)
+    }
+}
+impl From<Pdo25> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo25) -> u8 {
+        Pdo25::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo26 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo26 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo26 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo26 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo26 {
+        Pdo26::from_bits(val)
+    }
+}
+impl From<Pdo26> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo26) -> u8 {
+        Pdo26::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo27 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo27 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo27 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo27 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo27 {
+        Pdo27::from_bits(val)
+    }
+}
+impl From<Pdo27> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo27) -> u8 {
+        Pdo27::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo28 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo28 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo28 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo28 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo28 {
+        Pdo28::from_bits(val)
+    }
+}
+impl From<Pdo28> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo28) -> u8 {
+        Pdo28::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo29 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo29 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo29 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo29 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo29 {
+        Pdo29::from_bits(val)
+    }
+}
+impl From<Pdo29> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo29) -> u8 {
+        Pdo29::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo3 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo3 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo3 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo3 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo3 {
+        Pdo3::from_bits(val)
+    }
+}
+impl From<Pdo3> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo3) -> u8 {
+        Pdo3::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo30 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo30 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo30 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo30 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo30 {
+        Pdo30::from_bits(val)
+    }
+}
+impl From<Pdo30> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo30) -> u8 {
+        Pdo30::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo31 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo31 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo31 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo31 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo31 {
+        Pdo31::from_bits(val)
+    }
+}
+impl From<Pdo31> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo31) -> u8 {
+        Pdo31::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo4 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo4 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo4 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo4 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo4 {
+        Pdo4::from_bits(val)
+    }
+}
+impl From<Pdo4> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo4) -> u8 {
+        Pdo4::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo5 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo5 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo5 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo5 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo5 {
+        Pdo5::from_bits(val)
+    }
+}
+impl From<Pdo5> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo5) -> u8 {
+        Pdo5::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo6 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo6 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo6 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo6 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo6 {
+        Pdo6::from_bits(val)
+    }
+}
+impl From<Pdo6> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo6) -> u8 {
+        Pdo6::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo7 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo7 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo7 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo7 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo7 {
+        Pdo7::from_bits(val)
+    }
+}
+impl From<Pdo7> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo7) -> u8 {
+        Pdo7::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo8 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo8 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo8 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo8 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo8 {
+        Pdo8::from_bits(val)
+    }
+}
+impl From<Pdo8> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo8) -> u8 {
+        Pdo8::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pdo9 {
+    #[doc = "Logic level 0"]
+    PDO0 = 0x0,
+    #[doc = "Logic level 1"]
+    PDO1 = 0x01,
+}
+impl Pdo9 {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pdo9 {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pdo9 {
+    #[inline(always)]
+    fn from(val: u8) -> Pdo9 {
+        Pdo9::from_bits(val)
+    }
+}
+impl From<Pdo9> for u8 {
+    #[inline(always)]
+    fn from(val: Pdo9) -> u8 {
+        Pdo9::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Pid {
+    #[doc = "Configured for general-purpose input"]
+    PID0 = 0x0,
+    #[doc = "Disabled for general-purpose input"]
+    PID1 = 0x01,
+}
+impl Pid {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Pid {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Pid {
+    #[inline(always)]
+    fn from(val: u8) -> Pid {
+        Pid::from_bits(val)
+    }
+}
+impl From<Pid> for u8 {
+    #[inline(always)]
+    fn from(val: Pid) -> u8 {
+        Pid::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Ptco {
+    #[doc = "No change"]
+    PTCO0 = 0x0,
+    #[doc = "Corresponding field in PDOR becomes 0"]
+    PTCO1 = 0x01,
+}
+impl Ptco {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Ptco {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Ptco {
+    #[inline(always)]
+    fn from(val: u8) -> Ptco {
+        Ptco::from_bits(val)
+    }
+}
+impl From<Ptco> for u8 {
+    #[inline(always)]
+    fn from(val: Ptco) -> u8 {
+        Ptco::to_bits(val)
+    }
+}
+#[repr(u8)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
+pub enum Ptso {
+    #[doc = "No change"]
+    PTSO0 = 0x0,
+    #[doc = "Corresponding field in PDOR becomes 1"]
+    PTSO1 = 0x01,
+}
+impl Ptso {
+    #[inline(always)]
+    pub const fn from_bits(val: u8) -> Ptso {
+        unsafe { core::mem::transmute(val & 0x01) }
+    }
+    #[inline(always)]
+    pub const fn to_bits(self) -> u8 {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+impl From<u8> for Ptso {
+    #[inline(always)]
+    fn from(val: u8) -> Ptso {
+        Ptso::from_bits(val)
+    }
+}
+impl From<Ptso> for u8 {
+    #[inline(always)]
+    fn from(val: Ptso) -> u8 {
+        Ptso::to_bits(val)
+    }
+}

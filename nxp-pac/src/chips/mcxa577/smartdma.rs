@@ -1,0 +1,53 @@
+#[doc = "Smart DMA Controller"]
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub struct Smartdma {
+    ptr: *mut u8,
+}
+unsafe impl Send for Smartdma {}
+unsafe impl Sync for Smartdma {}
+impl Smartdma {
+    #[inline(always)]
+    pub const unsafe fn from_ptr(ptr: *mut ()) -> Self {
+        Self { ptr: ptr as _ }
+    }
+    #[inline(always)]
+    pub const fn as_ptr(&self) -> *mut () {
+        self.ptr as _
+    }
+    #[doc = "Boot Address"]
+    #[inline(always)]
+    pub const fn bootadr(self) -> crate::common::Reg<regs::Bootadr, crate::common::RW> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x20usize) as _) }
+    }
+    #[doc = "Control"]
+    #[inline(always)]
+    pub const fn ctrl(self) -> crate::common::Reg<regs::Ctrl, crate::common::RW> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x24usize) as _) }
+    }
+    #[doc = "Program Counter"]
+    #[inline(always)]
+    pub const fn pc(self) -> crate::common::Reg<regs::Pc, crate::common::R> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x28usize) as _) }
+    }
+    #[doc = "Stack Pointer"]
+    #[inline(always)]
+    pub const fn sp(self) -> crate::common::Reg<regs::Sp, crate::common::R> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x2cusize) as _) }
+    }
+    #[doc = "ARM to EZH Interrupt Control"]
+    #[inline(always)]
+    pub const fn arm2ezh(self) -> crate::common::Reg<regs::Arm2ezh, crate::common::RW> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x40usize) as _) }
+    }
+    #[doc = "EZH to ARM Trigger"]
+    #[inline(always)]
+    pub const fn ezh2arm(self) -> crate::common::Reg<regs::Ezh2arm, crate::common::RW> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x44usize) as _) }
+    }
+    #[doc = "Pending Trap Control"]
+    #[inline(always)]
+    pub const fn pendtrap(self) -> crate::common::Reg<regs::Pendtrap, crate::common::RW> {
+        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x48usize) as _) }
+    }
+}
+pub mod regs;
