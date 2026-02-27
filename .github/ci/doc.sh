@@ -18,6 +18,7 @@ git submodule update --init --recursive
 # which makes rustup very sad
 rustc --version > /dev/null
 
+cd nxp-pac
 docserver-builder -i . -o webroot/crates/nxp-pac/git.zup
 
 export KUBECONFIG=/ci/secrets/kubeconfig.yml
