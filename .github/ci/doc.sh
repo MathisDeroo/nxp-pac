@@ -9,6 +9,9 @@ export CARGO_TARGET_DIR=/ci/cache/target
 export BUILDER_THREADS=4
 export BUILDER_COMPRESS=true
 
+# SUBMODULES!!!
+git submodule update --init --recursive
+
 # force rustup to download the toolchain before starting building.
 # Otherwise, the docs builder is running multiple instances of cargo rustdoc concurrently.
 # They all see the toolchain is not installed and try to install it in parallel
