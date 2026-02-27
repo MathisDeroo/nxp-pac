@@ -10,7 +10,7 @@ export BUILDER_THREADS=4
 export BUILDER_COMPRESS=true
 
 # SUBMODULES!!!
-git submodule update --init --recursive
+git submodule update --init --recursive --checkout
 
 # force rustup to download the toolchain before starting building.
 # Otherwise, the docs builder is running multiple instances of cargo rustdoc concurrently.
