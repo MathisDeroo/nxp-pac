@@ -19,7 +19,7 @@ git submodule update --init --recursive --checkout
 rustc --version > /dev/null
 
 cd nxp-pac
-docserver-builder -i . -o webroot/crates/nxp-pac/git.zup
+docserver build -i . -o webroot/crates/nxp-pac/git.zup
 
 export KUBECONFIG=/ci/secrets/kubeconfig.yml
 POD=$(kubectl -n embassy get po -l app=docserver -o jsonpath={.items[0].metadata.name})
