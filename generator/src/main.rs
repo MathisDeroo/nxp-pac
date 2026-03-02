@@ -112,8 +112,8 @@ fn main() -> anyhow::Result<()> {
     Command::new("cargo")
         .arg("fmt")
         .current_dir(current)
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .status()?;
 
     Ok(())
@@ -163,8 +163,8 @@ fn generate_chip(current_dir: &Path, feature: &Feature) -> anyhow::Result<()> {
 fn rustfmt(path: &Path) -> anyhow::Result<()> {
     let output = Command::new("rustfmt")
         .arg(path.canonicalize()?)
-        .stdout(Stdio::null())
-        .stderr(Stdio::piped())
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .output()?;
 
     if !output.status.success() {
