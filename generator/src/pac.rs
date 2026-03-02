@@ -43,8 +43,8 @@ pub fn generate_core(
         .arg(svd.canonicalize()?)
         .arg("--transform")
         .arg(transform.canonicalize()?)
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .current_dir(temp.path())
         .output()?;
 
@@ -73,8 +73,8 @@ pub fn generate_core(
         .arg(lib_temp.canonicalize()?)
         .arg("-o")
         .arg(output_dir.canonicalize()?)
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .status()
         .context("Running the `form` command. Make sure to have it installed: https://crates.io/crates/form")?;
 
