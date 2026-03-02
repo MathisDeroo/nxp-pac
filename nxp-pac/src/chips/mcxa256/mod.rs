@@ -1,6 +1,6 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
-#![doc = "Peripheral access API (generated using chiptool v0.1.0 (f78270d 2025-11-08))"]
+#![doc = "Peripheral access API (generated using chiptool v0.1.0 (6a8c2aa 2026-01-27))"]
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum Interrupt {
@@ -44,8 +44,8 @@ pub enum Interrupt {
     WUU0 = 18,
     #[doc = "19 - CAN0"]
     CAN0 = 19,
-    #[doc = "20 - CAN1"]
-    CAN1 = 20,
+    #[doc = "20 - RESERVED36"]
+    RESERVED36 = 20,
     #[doc = "23 - FLEXIO"]
     FLEXIO = 23,
     #[doc = "24 - I3C0"]
@@ -122,8 +122,8 @@ pub enum Interrupt {
     CMP0 = 64,
     #[doc = "65 - CMP1"]
     CMP1 = 65,
-    #[doc = "66 - CMP2"]
-    CMP2 = 66,
+    #[doc = "66 - RESERVED82"]
+    RESERVED82 = 66,
     #[doc = "67 - DAC0"]
     DAC0 = 67,
     #[doc = "71 - GPIO0"]
@@ -160,8 +160,8 @@ pub enum Interrupt {
     EQDC1_WATCHDOG = 87,
     #[doc = "88 - EQDC1_INDEX"]
     EQDC1_INDEX = 88,
-    #[doc = "95 - LPUART5"]
-    LPUART5 = 95,
+    #[doc = "95 - RESERVED111"]
+    RESERVED111 = 95,
     #[doc = "107 - MAU"]
     MAU = 107,
     #[doc = "108 - SMARTDMA"]
@@ -174,16 +174,18 @@ pub enum Interrupt {
     SGI = 111,
     #[doc = "113 - TRNG0"]
     TRNG0 = 113,
-    #[doc = "116 - ADC2"]
-    ADC2 = 116,
-    #[doc = "117 - ADC3"]
-    ADC3 = 117,
+    #[doc = "114 - SECURE_ERR"]
+    SECURE_ERR = 114,
+    #[doc = "116 - RESERVED132"]
+    RESERVED132 = 116,
+    #[doc = "117 - RESERVED133"]
+    RESERVED133 = 117,
     #[doc = "119 - RTC"]
     RTC = 119,
     #[doc = "120 - RTC_1HZ"]
     RTC_1HZ = 120,
-    #[doc = "121 - SLCD"]
-    SLCD = 121,
+    #[doc = "121 - RESERVED137"]
+    RESERVED137 = 121,
 }
 unsafe impl cortex_m::interrupt::InterruptNumber for Interrupt {
     #[inline(always)]
@@ -212,7 +214,7 @@ pub const CTIMER4: ctimer::Ctimer = unsafe { ctimer::Ctimer::from_ptr(0x4000_800
 pub const FREQME0: freqme::Freqme = unsafe { freqme::Freqme::from_ptr(0x4000_9000usize as _) };
 #[doc = "UTICK"]
 pub const UTICK0: utick::Utick = unsafe { utick::Utick::from_ptr(0x4000_b000usize as _) };
-#[doc = "WWDT"]
+#[doc = "Windowed Watchdog Timer"]
 pub const WWDT0: wwdt::Wwdt = unsafe { wwdt::Wwdt::from_ptr(0x4000_c000usize as _) };
 #[doc = "Smart DMA Controller"]
 pub const SMARTDMA0: smartdma::Smartdma =
@@ -286,7 +288,7 @@ pub const FLEXPWM0: flexpwm::Flexpwm = unsafe { flexpwm::Flexpwm::from_ptr(0x400
 pub const FLEXPWM1: flexpwm::Flexpwm = unsafe { flexpwm::Flexpwm::from_ptr(0x400a_a000usize as _) };
 #[doc = "LPTMR"]
 pub const LPTMR0: lptmr::Lptmr = unsafe { lptmr::Lptmr::from_ptr(0x400a_b000usize as _) };
-#[doc = "OSTIMER"]
+#[doc = "OS Event Timer"]
 pub const OSTIMER0: ostimer::Ostimer = unsafe { ostimer::Ostimer::from_ptr(0x400a_d000usize as _) };
 #[doc = "WAKE_TIMER"]
 pub const WAKETIMER0: waketimer::Waketimer =
@@ -315,8 +317,6 @@ pub const PORT3: port::Port = unsafe { port::Port::from_ptr(0x400b_f000usize as 
 pub const PORT4: port::Port = unsafe { port::Port::from_ptr(0x400c_0000usize as _) };
 #[doc = "CAN"]
 pub const CAN0: can::Can = unsafe { can::Can::from_ptr(0x400c_c000usize as _) };
-#[doc = "CAN"]
-pub const CAN1: can::Can = unsafe { can::Can::from_ptr(0x400d_0000usize as _) };
 #[doc = "Low-Power Inter-Integrated Circuit"]
 pub const LPI2C2: lpi2c::Lpi2c = unsafe { lpi2c::Lpi2c::from_ptr(0x400d_4000usize as _) };
 #[doc = "Low-Power Inter-Integrated Circuit"]
@@ -338,7 +338,7 @@ pub const ADC2: adc::Adc = unsafe { adc::Adc::from_ptr(0x400f_0000usize as _) };
 pub const ADC3: adc::Adc = unsafe { adc::Adc::from_ptr(0x400f_1000usize as _) };
 #[doc = "CDOG"]
 pub const CDOG0: cdog::Cdog = unsafe { cdog::Cdog::from_ptr(0x4010_0000usize as _) };
-#[doc = "DBGMB"]
+#[doc = "Debug Mailbox"]
 pub const DBGMAILBOX: dbgmailbox::Dbgmailbox =
     unsafe { dbgmailbox::Dbgmailbox::from_ptr(0x4010_1000usize as _) };
 #[doc = "GPIO"]
@@ -353,10 +353,11 @@ pub const GPIO3: gpio::Gpio = unsafe { gpio::Gpio::from_ptr(0x4010_5000usize as 
 pub const GPIO4: gpio::Gpio = unsafe { gpio::Gpio::from_ptr(0x4010_6000usize as _) };
 #[doc = "CDOG"]
 pub const CDOG1: cdog::Cdog = unsafe { cdog::Cdog::from_ptr(0x4010_7000usize as _) };
-#[doc = "MAUWRAP"]
-pub const MAU0: mau::Mau = unsafe { mau::Mau::from_ptr(0x4010_8000usize as _) };
 #[doc = "System Control not in System Control Block"]
 pub const SCNSCB: scn_scb::ScnScb = unsafe { scn_scb::ScnScb::from_ptr(0xe000_e000usize as _) };
+#[doc = "M33 Systick module"]
+pub const SYSTICK: sys_tick::SysTick =
+    unsafe { sys_tick::SysTick::from_ptr(0xe000_e010usize as _) };
 #[doc = r" Number available in the NVIC for configuring priority"]
 #[cfg(feature = "rt")]
 pub const NVIC_PRIO_BITS: u8 = 3;
@@ -393,7 +394,6 @@ pub mod lpi2c;
 pub mod lpspi;
 pub mod lptmr;
 pub mod lpuart;
-pub mod mau;
 pub mod mbc;
 pub mod mrcc;
 pub mod opamp;
@@ -406,6 +406,7 @@ pub mod scn_scb;
 pub mod sgi;
 pub mod smartdma;
 pub mod spc;
+pub mod sys_tick;
 pub mod syscon;
 pub mod tdet;
 pub mod trng;

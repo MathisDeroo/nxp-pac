@@ -1,4 +1,4 @@
-#[doc = "OSTIMER"]
+#[doc = "OS Event Timer"]
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct Ostimer {
     ptr: *mut u8,

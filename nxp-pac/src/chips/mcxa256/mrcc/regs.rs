@@ -1986,18 +1986,6 @@ impl MrccGlbAcc0 {
     pub const fn set_erm0(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 15usize)) | (((val as u32) & 0x01) << 15usize);
     }
-    #[doc = "FMC"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn fmc(&self) -> bool {
-        let val = (self.0 >> 16usize) & 0x01;
-        val != 0
-    }
-    #[doc = "FMC"]
-    #[inline(always)]
-    pub const fn set_fmc(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 16usize)) | (((val as u32) & 0x01) << 16usize);
-    }
     #[doc = "AOI1"]
     #[must_use]
     #[inline(always)]
@@ -2204,7 +2192,6 @@ impl core::fmt::Debug for MrccGlbAcc0 {
             .field("crc0", &self.crc0())
             .field("eim0", &self.eim0())
             .field("erm0", &self.erm0())
-            .field("fmc", &self.fmc())
             .field("aoi1", &self.aoi1())
             .field("flexio0", &self.flexio0())
             .field("lpi2c0", &self.lpi2c0())
@@ -2228,7 +2215,7 @@ impl defmt::Format for MrccGlbAcc0 {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "MrccGlbAcc0 {{ inputmux0: {=bool:?}, i3c0: {=bool:?}, ctimer0: {=bool:?}, ctimer1: {=bool:?}, ctimer2: {=bool:?}, ctimer3: {=bool:?}, ctimer4: {=bool:?}, freqme: {=bool:?}, utick0: {=bool:?}, wwdt0: {=bool:?}, smartdma0: {=bool:?}, dma0: {=bool:?}, aoi0: {=bool:?}, crc0: {=bool:?}, eim0: {=bool:?}, erm0: {=bool:?}, fmc: {=bool:?}, aoi1: {=bool:?}, flexio0: {=bool:?}, lpi2c0: {=bool:?}, lpi2c1: {=bool:?}, lpspi0: {=bool:?}, lpspi1: {=bool:?}, lpuart0: {=bool:?}, lpuart1: {=bool:?}, lpuart2: {=bool:?}, lpuart3: {=bool:?}, lpuart4: {=bool:?}, usb0: {=bool:?}, qdc0: {=bool:?}, qdc1: {=bool:?}, flexpwm0: {=bool:?} }}",
+            "MrccGlbAcc0 {{ inputmux0: {=bool:?}, i3c0: {=bool:?}, ctimer0: {=bool:?}, ctimer1: {=bool:?}, ctimer2: {=bool:?}, ctimer3: {=bool:?}, ctimer4: {=bool:?}, freqme: {=bool:?}, utick0: {=bool:?}, wwdt0: {=bool:?}, smartdma0: {=bool:?}, dma0: {=bool:?}, aoi0: {=bool:?}, crc0: {=bool:?}, eim0: {=bool:?}, erm0: {=bool:?}, aoi1: {=bool:?}, flexio0: {=bool:?}, lpi2c0: {=bool:?}, lpi2c1: {=bool:?}, lpspi0: {=bool:?}, lpspi1: {=bool:?}, lpuart0: {=bool:?}, lpuart1: {=bool:?}, lpuart2: {=bool:?}, lpuart3: {=bool:?}, lpuart4: {=bool:?}, usb0: {=bool:?}, qdc0: {=bool:?}, qdc1: {=bool:?}, flexpwm0: {=bool:?} }}",
             self.inputmux0(),
             self.i3c0(),
             self.ctimer0(),
@@ -2245,7 +2232,6 @@ impl defmt::Format for MrccGlbAcc0 {
             self.crc0(),
             self.eim0(),
             self.erm0(),
-            self.fmc(),
             self.aoi1(),
             self.flexio0(),
             self.lpi2c0(),
@@ -3061,18 +3047,6 @@ impl MrccGlbCc0 {
     pub const fn set_erm0(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 15usize)) | (((val as u32) & 0x01) << 15usize);
     }
-    #[doc = "FMC"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn fmc(&self) -> bool {
-        let val = (self.0 >> 16usize) & 0x01;
-        val != 0
-    }
-    #[doc = "FMC"]
-    #[inline(always)]
-    pub const fn set_fmc(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 16usize)) | (((val as u32) & 0x01) << 16usize);
-    }
     #[doc = "AOI1"]
     #[must_use]
     #[inline(always)]
@@ -3279,7 +3253,6 @@ impl core::fmt::Debug for MrccGlbCc0 {
             .field("crc0", &self.crc0())
             .field("eim0", &self.eim0())
             .field("erm0", &self.erm0())
-            .field("fmc", &self.fmc())
             .field("aoi1", &self.aoi1())
             .field("flexio0", &self.flexio0())
             .field("lpi2c0", &self.lpi2c0())
@@ -3303,7 +3276,7 @@ impl defmt::Format for MrccGlbCc0 {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "MrccGlbCc0 {{ inputmux0: {=bool:?}, i3c0: {=bool:?}, ctimer0: {=bool:?}, ctimer1: {=bool:?}, ctimer2: {=bool:?}, ctimer3: {=bool:?}, ctimer4: {=bool:?}, freqme: {=bool:?}, utick0: {=bool:?}, wwdt0: {=bool:?}, smartdma0: {=bool:?}, dma0: {=bool:?}, aoi0: {=bool:?}, crc0: {=bool:?}, eim0: {=bool:?}, erm0: {=bool:?}, fmc: {=bool:?}, aoi1: {=bool:?}, flexio0: {=bool:?}, lpi2c0: {=bool:?}, lpi2c1: {=bool:?}, lpspi0: {=bool:?}, lpspi1: {=bool:?}, lpuart0: {=bool:?}, lpuart1: {=bool:?}, lpuart2: {=bool:?}, lpuart3: {=bool:?}, lpuart4: {=bool:?}, usb0: {=bool:?}, qdc0: {=bool:?}, qdc1: {=bool:?}, flexpwm0: {=bool:?} }}",
+            "MrccGlbCc0 {{ inputmux0: {=bool:?}, i3c0: {=bool:?}, ctimer0: {=bool:?}, ctimer1: {=bool:?}, ctimer2: {=bool:?}, ctimer3: {=bool:?}, ctimer4: {=bool:?}, freqme: {=bool:?}, utick0: {=bool:?}, wwdt0: {=bool:?}, smartdma0: {=bool:?}, dma0: {=bool:?}, aoi0: {=bool:?}, crc0: {=bool:?}, eim0: {=bool:?}, erm0: {=bool:?}, aoi1: {=bool:?}, flexio0: {=bool:?}, lpi2c0: {=bool:?}, lpi2c1: {=bool:?}, lpspi0: {=bool:?}, lpspi1: {=bool:?}, lpuart0: {=bool:?}, lpuart1: {=bool:?}, lpuart2: {=bool:?}, lpuart3: {=bool:?}, lpuart4: {=bool:?}, usb0: {=bool:?}, qdc0: {=bool:?}, qdc1: {=bool:?}, flexpwm0: {=bool:?} }}",
             self.inputmux0(),
             self.i3c0(),
             self.ctimer0(),
@@ -3320,7 +3293,6 @@ impl defmt::Format for MrccGlbCc0 {
             self.crc0(),
             self.eim0(),
             self.erm0(),
-            self.fmc(),
             self.aoi1(),
             self.flexio0(),
             self.lpi2c0(),

@@ -1216,41 +1216,6 @@ impl From<Interleave> for u8 {
 #[repr(u8)]
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
-pub enum KeySel {
-    #[doc = "DUK: UID\\[127:0\\]^RTL_CONST1\\[127:0\\]"]
-    DUK_0 = 0x0,
-    #[doc = "DUK: UID\\[127:0\\]^RTL_CONST1\\[127:0\\]"]
-    DUK_1 = 0x01,
-    #[doc = "DeviceHSM"]
-    DEVICE_HSM = 0x02,
-    #[doc = "NXP_mRoT"]
-    NXP_M_RO_T = 0x03,
-}
-impl KeySel {
-    #[inline(always)]
-    pub const fn from_bits(val: u8) -> KeySel {
-        unsafe { core::mem::transmute(val & 0x03) }
-    }
-    #[inline(always)]
-    pub const fn to_bits(self) -> u8 {
-        unsafe { core::mem::transmute(self) }
-    }
-}
-impl From<u8> for KeySel {
-    #[inline(always)]
-    fn from(val: u8) -> KeySel {
-        KeySel::from_bits(val)
-    }
-}
-impl From<KeySel> for u8 {
-    #[inline(always)]
-    fn from(val: KeySel) -> u8 {
-        KeySel::to_bits(val)
-    }
-}
-#[repr(u8)]
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
-#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum LockAll {
     #[doc = "Any other value than b1010: disables write access to all registers"]
     DISABLE = 0x0,
@@ -2042,94 +2007,6 @@ impl From<SramXenLock> for u8 {
     #[inline(always)]
     fn from(val: SramXenLock) -> u8 {
         SramXenLock::to_bits(val)
-    }
-}
-#[repr(u8)]
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
-#[cfg_attr(feature = "defmt", derive(defmt::Format))]
-pub enum UdfHidden {
-    _RESERVED_0 = 0x0,
-    _RESERVED_1 = 0x01,
-    _RESERVED_2 = 0x02,
-    _RESERVED_3 = 0x03,
-    _RESERVED_4 = 0x04,
-    _RESERVED_5 = 0x05,
-    _RESERVED_6 = 0x06,
-    _RESERVED_7 = 0x07,
-    _RESERVED_8 = 0x08,
-    _RESERVED_9 = 0x09,
-    #[doc = "Enable the access of UDF register from APB bus. All other value, disable the read/write of UDF register from UDF APB bus."]
-    UDF_HIDDEN = 0x0a,
-    _RESERVED_b = 0x0b,
-    _RESERVED_c = 0x0c,
-    _RESERVED_d = 0x0d,
-    _RESERVED_e = 0x0e,
-    _RESERVED_f = 0x0f,
-}
-impl UdfHidden {
-    #[inline(always)]
-    pub const fn from_bits(val: u8) -> UdfHidden {
-        unsafe { core::mem::transmute(val & 0x0f) }
-    }
-    #[inline(always)]
-    pub const fn to_bits(self) -> u8 {
-        unsafe { core::mem::transmute(self) }
-    }
-}
-impl From<u8> for UdfHidden {
-    #[inline(always)]
-    fn from(val: u8) -> UdfHidden {
-        UdfHidden::from_bits(val)
-    }
-}
-impl From<UdfHidden> for u8 {
-    #[inline(always)]
-    fn from(val: UdfHidden) -> u8 {
-        UdfHidden::to_bits(val)
-    }
-}
-#[repr(u8)]
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
-#[cfg_attr(feature = "defmt", derive(defmt::Format))]
-pub enum UidHidden {
-    _RESERVED_0 = 0x0,
-    _RESERVED_1 = 0x01,
-    _RESERVED_2 = 0x02,
-    _RESERVED_3 = 0x03,
-    _RESERVED_4 = 0x04,
-    _RESERVED_5 = 0x05,
-    _RESERVED_6 = 0x06,
-    _RESERVED_7 = 0x07,
-    _RESERVED_8 = 0x08,
-    _RESERVED_9 = 0x09,
-    #[doc = "Enable the access of UID\\[127:0\\] register. All other value, disable the read/write of UID\\[127:0\\] register."]
-    UID_HIDDEN = 0x0a,
-    _RESERVED_b = 0x0b,
-    _RESERVED_c = 0x0c,
-    _RESERVED_d = 0x0d,
-    _RESERVED_e = 0x0e,
-    _RESERVED_f = 0x0f,
-}
-impl UidHidden {
-    #[inline(always)]
-    pub const fn from_bits(val: u8) -> UidHidden {
-        unsafe { core::mem::transmute(val & 0x0f) }
-    }
-    #[inline(always)]
-    pub const fn to_bits(self) -> u8 {
-        unsafe { core::mem::transmute(self) }
-    }
-}
-impl From<u8> for UidHidden {
-    #[inline(always)]
-    fn from(val: u8) -> UidHidden {
-        UidHidden::from_bits(val)
-    }
-}
-impl From<UidHidden> for u8 {
-    #[inline(always)]
-    fn from(val: UidHidden) -> u8 {
-        UidHidden::to_bits(val)
     }
 }
 #[repr(u8)]

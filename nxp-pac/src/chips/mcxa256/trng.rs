@@ -24,35 +24,10 @@ impl Trng {
     pub const fn scmisc(self) -> crate::common::Reg<regs::Scmisc, crate::common::RW> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x04usize) as _) }
     }
-    #[doc = "Poker Range Register"]
-    #[inline(always)]
-    pub const fn pkrrng(self) -> crate::common::Reg<regs::Pkrrng, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x08usize) as _) }
-    }
-    #[doc = "Poker Maximum Limit Register"]
-    #[inline(always)]
-    pub const fn pkrmax(self) -> crate::common::Reg<regs::Pkrmax, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0cusize) as _) }
-    }
-    #[doc = "Poker Square Calculation Result Register"]
-    #[inline(always)]
-    pub const fn pkrsq(self) -> crate::common::Reg<regs::Pkrsq, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0cusize) as _) }
-    }
     #[doc = "Seed Control Register"]
     #[inline(always)]
     pub const fn sdctl(self) -> crate::common::Reg<regs::Sdctl, crate::common::RW> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x10usize) as _) }
-    }
-    #[doc = "Sparse Bit Limit Register"]
-    #[inline(always)]
-    pub const fn sblim(self) -> crate::common::Reg<regs::Sblim, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x14usize) as _) }
-    }
-    #[doc = "Total Samples Register"]
-    #[inline(always)]
-    pub const fn totsam(self) -> crate::common::Reg<regs::Totsam, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x14usize) as _) }
     }
     #[doc = "Frequency Count Minimum Limit Register"]
     #[inline(always)]
@@ -114,36 +89,6 @@ impl Trng {
     pub const fn scr3l(self) -> crate::common::Reg<regs::Scr3l, crate::common::RW> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x2cusize) as _) }
     }
-    #[doc = "Statistical Check Run Length 4 Count Register"]
-    #[inline(always)]
-    pub const fn scr4c(self) -> crate::common::Reg<regs::Scr4c, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x30usize) as _) }
-    }
-    #[doc = "Statistical Check Run Length 4 Limit Register"]
-    #[inline(always)]
-    pub const fn scr4l(self) -> crate::common::Reg<regs::Scr4l, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x30usize) as _) }
-    }
-    #[doc = "Statistical Check Run Length 5 Count Register"]
-    #[inline(always)]
-    pub const fn scr5c(self) -> crate::common::Reg<regs::Scr5c, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x34usize) as _) }
-    }
-    #[doc = "Statistical Check Run Length 5 Limit Register"]
-    #[inline(always)]
-    pub const fn scr5l(self) -> crate::common::Reg<regs::Scr5l, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x34usize) as _) }
-    }
-    #[doc = "Statistical Check Run Length 6+ Count Register"]
-    #[inline(always)]
-    pub const fn scr6pc(self) -> crate::common::Reg<regs::Scr6pc, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x38usize) as _) }
-    }
-    #[doc = "Statistical Check Run Length 6+ Limit Register"]
-    #[inline(always)]
-    pub const fn scr6pl(self) -> crate::common::Reg<regs::Scr6pl, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x38usize) as _) }
-    }
     #[doc = "Status Register"]
     #[inline(always)]
     pub const fn status(self) -> crate::common::Reg<regs::Status, crate::common::R> {
@@ -154,46 +99,6 @@ impl Trng {
     pub const fn ent(self, n: usize) -> crate::common::Reg<regs::Ent, crate::common::R> {
         assert!(n < 8usize);
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x40usize + n * 4usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count 1 and 0 Register"]
-    #[inline(always)]
-    pub const fn pkrcnt10(self) -> crate::common::Reg<regs::Pkrcnt10, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x80usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count 3 and 2 Register"]
-    #[inline(always)]
-    pub const fn pkrcnt32(self) -> crate::common::Reg<regs::Pkrcnt32, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x84usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count 5 and 4 Register"]
-    #[inline(always)]
-    pub const fn pkrcnt54(self) -> crate::common::Reg<regs::Pkrcnt54, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x88usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count 7 and 6 Register"]
-    #[inline(always)]
-    pub const fn pkrcnt76(self) -> crate::common::Reg<regs::Pkrcnt76, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x8cusize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count 9 and 8 Register"]
-    #[inline(always)]
-    pub const fn pkrcnt98(self) -> crate::common::Reg<regs::Pkrcnt98, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x90usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count B and A Register"]
-    #[inline(always)]
-    pub const fn pkrcntba(self) -> crate::common::Reg<regs::Pkrcntba, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x94usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count D and C Register"]
-    #[inline(always)]
-    pub const fn pkrcntdc(self) -> crate::common::Reg<regs::Pkrcntdc, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x98usize) as _) }
-    }
-    #[doc = "Statistical Check Poker Count F and E Register"]
-    #[inline(always)]
-    pub const fn pkrcntfe(self) -> crate::common::Reg<regs::Pkrcntfe, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x9cusize) as _) }
     }
     #[doc = "Security Configuration Register"]
     #[inline(always)]
@@ -214,16 +119,6 @@ impl Trng {
     #[inline(always)]
     pub const fn int_status(self) -> crate::common::Reg<regs::IntStatus, crate::common::R> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0xacusize) as _) }
-    }
-    #[doc = "Common Security Error Register"]
-    #[inline(always)]
-    pub const fn cser(self) -> crate::common::Reg<regs::Cser, crate::common::R> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0xb0usize) as _) }
-    }
-    #[doc = "Common Security Clear Register"]
-    #[inline(always)]
-    pub const fn csclr(self) -> crate::common::Reg<regs::Csclr, crate::common::W> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0xb4usize) as _) }
     }
     #[doc = "TRNG Oscillator 2 Control Register"]
     #[inline(always)]

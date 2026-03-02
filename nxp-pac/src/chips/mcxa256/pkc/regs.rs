@@ -27,14 +27,14 @@ impl PkcAccessErr {
     pub const fn set_apb_wrgmd(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 1usize)) | (((val as u32) & 0x01) << 1usize);
     }
-    #[doc = "APB Master that triggered first APB error (APB_WRGMD or APB_NOTAV)"]
+    #[doc = "APB Master that triggered first APB error (APB_WRGMD or APB_NOTAV) This bit field always reads 0."]
     #[must_use]
     #[inline(always)]
     pub const fn apb_master(&self) -> u8 {
         let val = (self.0 >> 4usize) & 0x0f;
         val as u8
     }
-    #[doc = "APB Master that triggered first APB error (APB_WRGMD or APB_NOTAV)"]
+    #[doc = "APB Master that triggered first APB error (APB_WRGMD or APB_NOTAV) This bit field always reads 0."]
     #[inline(always)]
     pub const fn set_apb_master(&mut self, val: u8) {
         self.0 = (self.0 & !(0x0f << 4usize)) | (((val as u32) & 0x0f) << 4usize);

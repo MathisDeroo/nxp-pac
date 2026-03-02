@@ -105,7 +105,7 @@ impl Spc {
     }
     #[doc = "LDO_CORE Configuration"]
     #[inline(always)]
-    pub const fn coreldo_cfg(self) -> crate::common::Reg<u32, crate::common::R> {
+    pub const fn coreldo_cfg(self) -> crate::common::Reg<regs::CoreldoCfg, crate::common::RW> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0300usize) as _) }
     }
 }

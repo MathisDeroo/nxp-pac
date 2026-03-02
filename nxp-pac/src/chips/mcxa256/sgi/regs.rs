@@ -39,14 +39,14 @@ impl SgiAccessErr {
     pub const fn set_accerr_rsvd1(&mut self, val: u8) {
         self.0 = (self.0 & !(0x03 << 2usize)) | (((val as u32) & 0x03) << 2usize);
     }
-    #[doc = "APB Master that triggered first APB error"]
+    #[doc = "APB Master that triggered first APB error (APB_WRGMD or APB_NOTAV)"]
     #[must_use]
     #[inline(always)]
     pub const fn apb_master(&self) -> u8 {
         let val = (self.0 >> 4usize) & 0x0f;
         val as u8
     }
-    #[doc = "APB Master that triggered first APB error"]
+    #[doc = "APB Master that triggered first APB error (APB_WRGMD or APB_NOTAV)"]
     #[inline(always)]
     pub const fn set_apb_master(&mut self, val: u8) {
         self.0 = (self.0 & !(0x0f << 4usize)) | (((val as u32) & 0x0f) << 4usize);
@@ -277,14 +277,14 @@ impl SgiAutoMode {
     #[doc = "CTR increment mode"]
     #[must_use]
     #[inline(always)]
-    pub const fn incr_mode(&self) -> u8 {
+    pub const fn incr_mode(&self) -> super::vals::IncrMode {
         let val = (self.0 >> 4usize) & 0x03;
-        val as u8
+        super::vals::IncrMode::from_bits(val as u8)
     }
     #[doc = "CTR increment mode"]
     #[inline(always)]
-    pub const fn set_incr_mode(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x03 << 4usize)) | (((val as u32) & 0x03) << 4usize);
+    pub const fn set_incr_mode(&mut self, val: super::vals::IncrMode) {
+        self.0 = (self.0 & !(0x03 << 4usize)) | (((val.to_bits() as u32) & 0x03) << 4usize);
     }
     #[doc = "reserved"]
     #[must_use]
@@ -347,7 +347,7 @@ impl defmt::Format for SgiAutoMode {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "SgiAutoMode {{ auto_mode_en: {=bool:?}, auto_mode_stop: {=bool:?}, auto_mode_rsvd1: {=u8:?}, incr_mode: {=u8:?}, auto_mode_rsvd2: {=u8:?}, cmd: {:?}, auto_mode_rsvd3: {=u16:?} }}",
+            "SgiAutoMode {{ auto_mode_en: {=bool:?}, auto_mode_stop: {=bool:?}, auto_mode_rsvd1: {=u8:?}, incr_mode: {:?}, auto_mode_rsvd2: {=u8:?}, cmd: {:?}, auto_mode_rsvd3: {=u16:?} }}",
             self.auto_mode_en(),
             self.auto_mode_stop(),
             self.auto_mode_rsvd1(),
@@ -740,17 +740,17 @@ impl defmt::Format for SgiConfig {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiConfig2(pub u32);
 impl SgiConfig2 {
-    #[doc = "0=Apollo; 1=Aegis; 2=Ayna; 3=Athenium; 4=Ajax;"]
+    #[doc = "no description available"]
     #[must_use]
     #[inline(always)]
-    pub const fn aes_used(&self) -> u8 {
+    pub const fn aes_used(&self) -> super::vals::AesUsed {
         let val = (self.0 >> 0usize) & 0x0f;
-        val as u8
+        super::vals::AesUsed::from_bits(val as u8)
     }
-    #[doc = "0=Apollo; 1=Aegis; 2=Ayna; 3=Athenium; 4=Ajax;"]
+    #[doc = "no description available"]
     #[inline(always)]
-    pub const fn set_aes_used(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x0f << 0usize)) | (((val as u32) & 0x0f) << 0usize);
+    pub const fn set_aes_used(&mut self, val: super::vals::AesUsed) {
+        self.0 = (self.0 & !(0x0f << 0usize)) | (((val.to_bits() as u32) & 0x0f) << 0usize);
     }
     #[doc = "Number of AES sboxes"]
     #[must_use]
@@ -764,17 +764,17 @@ impl SgiConfig2 {
     pub const fn set_aes_num_sboxes(&mut self, val: u8) {
         self.0 = (self.0 & !(0x1f << 4usize)) | (((val as u32) & 0x1f) << 4usize);
     }
-    #[doc = "0=128-Only,1=192-Only, 2=256-Only, 3=All Keysizes"]
+    #[doc = "Indicates which AES key size has been selected."]
     #[must_use]
     #[inline(always)]
-    pub const fn aes_keysize(&self) -> u8 {
+    pub const fn aes_keysize(&self) -> super::vals::AesKeysize {
         let val = (self.0 >> 9usize) & 0x03;
-        val as u8
+        super::vals::AesKeysize::from_bits(val as u8)
     }
-    #[doc = "0=128-Only,1=192-Only, 2=256-Only, 3=All Keysizes"]
+    #[doc = "Indicates which AES key size has been selected."]
     #[inline(always)]
-    pub const fn set_aes_keysize(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x03 << 9usize)) | (((val as u32) & 0x03) << 9usize);
+    pub const fn set_aes_keysize(&mut self, val: super::vals::AesKeysize) {
+        self.0 = (self.0 & !(0x03 << 9usize)) | (((val.to_bits() as u32) & 0x03) << 9usize);
     }
     #[doc = "reserved"]
     #[must_use]
@@ -788,17 +788,17 @@ impl SgiConfig2 {
     pub const fn set_config2b_rsvd(&mut self, val: u8) {
         self.0 = (self.0 & !(0x1f << 11usize)) | (((val as u32) & 0x1f) << 11usize);
     }
-    #[doc = "0=Dakar; 1=Danube; 2=Depicta; 3=Digi; 4=Date;"]
+    #[doc = "no description available"]
     #[must_use]
     #[inline(always)]
-    pub const fn des_used(&self) -> u8 {
+    pub const fn des_used(&self) -> super::vals::DesUsed {
         let val = (self.0 >> 16usize) & 0x0f;
-        val as u8
+        super::vals::DesUsed::from_bits(val as u8)
     }
-    #[doc = "0=Dakar; 1=Danube; 2=Depicta; 3=Digi; 4=Date;"]
+    #[doc = "no description available"]
     #[inline(always)]
-    pub const fn set_des_used(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x0f << 16usize)) | (((val as u32) & 0x0f) << 16usize);
+    pub const fn set_des_used(&mut self, val: super::vals::DesUsed) {
+        self.0 = (self.0 & !(0x0f << 16usize)) | (((val.to_bits() as u32) & 0x0f) << 16usize);
     }
     #[doc = "Number of DES sboxes"]
     #[must_use]
@@ -849,7 +849,7 @@ impl defmt::Format for SgiConfig2 {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "SgiConfig2 {{ aes_used: {=u8:?}, aes_num_sboxes: {=u8:?}, aes_keysize: {=u8:?}, config2b_rsvd: {=u8:?}, des_used: {=u8:?}, des_num_sboxes: {=u8:?}, config2a_rsvd: {=u8:?} }}",
+            "SgiConfig2 {{ aes_used: {:?}, aes_num_sboxes: {=u8:?}, aes_keysize: {:?}, config2b_rsvd: {=u8:?}, des_used: {:?}, des_num_sboxes: {=u8:?}, config2a_rsvd: {=u8:?} }}",
             self.aes_used(),
             self.aes_num_sboxes(),
             self.aes_keysize(),
@@ -865,14 +865,14 @@ impl defmt::Format for SgiConfig2 {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiCount(pub u32);
 impl SgiCount {
-    #[doc = "Calculation counter, incremented with"]
+    #[doc = "Calculation counter, incremented with each calculation start."]
     #[must_use]
     #[inline(always)]
     pub const fn count(&self) -> u16 {
         let val = (self.0 >> 0usize) & 0xffff;
         val as u16
     }
-    #[doc = "Calculation counter, incremented with"]
+    #[doc = "Calculation counter, incremented with each calculation start."]
     #[inline(always)]
     pub const fn set_count(&mut self, val: u16) {
         self.0 = (self.0 & !(0xffff << 0usize)) | (((val as u32) & 0xffff) << 0usize);
@@ -923,86 +923,86 @@ impl SgiCtrl {
     #[doc = "Start crypto operation"]
     #[must_use]
     #[inline(always)]
-    pub const fn start(&self) -> bool {
+    pub const fn start(&self) -> super::vals::Start {
         let val = (self.0 >> 0usize) & 0x01;
-        val != 0
+        super::vals::Start::from_bits(val as u8)
     }
     #[doc = "Start crypto operation"]
     #[inline(always)]
-    pub const fn set_start(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 0usize)) | (((val as u32) & 0x01) << 0usize);
+    pub const fn set_start(&mut self, val: super::vals::Start) {
+        self.0 = (self.0 & !(0x01 << 0usize)) | (((val.to_bits() as u32) & 0x01) << 0usize);
     }
     #[doc = "Sets Cipher direction(AES and DES)"]
     #[must_use]
     #[inline(always)]
-    pub const fn decrypt(&self) -> bool {
+    pub const fn decrypt(&self) -> super::vals::Decrypt {
         let val = (self.0 >> 1usize) & 0x01;
-        val != 0
+        super::vals::Decrypt::from_bits(val as u8)
     }
     #[doc = "Sets Cipher direction(AES and DES)"]
     #[inline(always)]
-    pub const fn set_decrypt(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 1usize)) | (((val as u32) & 0x01) << 1usize);
+    pub const fn set_decrypt(&mut self, val: super::vals::Decrypt) {
+        self.0 = (self.0 & !(0x01 << 1usize)) | (((val.to_bits() as u32) & 0x01) << 1usize);
     }
     #[doc = "Sets AES key size"]
     #[must_use]
     #[inline(always)]
-    pub const fn aeskeysz(&self) -> u8 {
+    pub const fn aeskeysz(&self) -> super::vals::Aeskeysz {
         let val = (self.0 >> 2usize) & 0x03;
-        val as u8
+        super::vals::Aeskeysz::from_bits(val as u8)
     }
     #[doc = "Sets AES key size"]
     #[inline(always)]
-    pub const fn set_aeskeysz(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x03 << 2usize)) | (((val as u32) & 0x03) << 2usize);
+    pub const fn set_aeskeysz(&mut self, val: super::vals::Aeskeysz) {
+        self.0 = (self.0 & !(0x03 << 2usize)) | (((val.to_bits() as u32) & 0x03) << 2usize);
     }
     #[doc = "Sets 'Crypto Operation' type"]
     #[must_use]
     #[inline(always)]
-    pub const fn crypto_op(&self) -> u8 {
+    pub const fn crypto_op(&self) -> super::vals::CryptoOp {
         let val = (self.0 >> 4usize) & 0x07;
-        val as u8
+        super::vals::CryptoOp::from_bits(val as u8)
     }
     #[doc = "Sets 'Crypto Operation' type"]
     #[inline(always)]
-    pub const fn set_crypto_op(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x07 << 4usize)) | (((val as u32) & 0x07) << 4usize);
+    pub const fn set_crypto_op(&mut self, val: super::vals::CryptoOp) {
+        self.0 = (self.0 & !(0x07 << 4usize)) | (((val.to_bits() as u32) & 0x07) << 4usize);
     }
-    #[doc = "4'b0000 - DATIN\\[0\\]"]
+    #[doc = "no description available"]
     #[must_use]
     #[inline(always)]
-    pub const fn insel(&self) -> u8 {
+    pub const fn insel(&self) -> super::vals::Insel {
         let val = (self.0 >> 7usize) & 0x0f;
-        val as u8
+        super::vals::Insel::from_bits(val as u8)
     }
-    #[doc = "4'b0000 - DATIN\\[0\\]"]
+    #[doc = "no description available"]
     #[inline(always)]
-    pub const fn set_insel(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x0f << 7usize)) | (((val as u32) & 0x0f) << 7usize);
+    pub const fn set_insel(&mut self, val: super::vals::Insel) {
+        self.0 = (self.0 & !(0x0f << 7usize)) | (((val.to_bits() as u32) & 0x0f) << 7usize);
     }
-    #[doc = "3'b000 - DATOUT = 'Kernel Res'"]
+    #[doc = "no description available"]
     #[must_use]
     #[inline(always)]
-    pub const fn outsel(&self) -> u8 {
+    pub const fn outsel(&self) -> super::vals::Outsel {
         let val = (self.0 >> 11usize) & 0x07;
-        val as u8
+        super::vals::Outsel::from_bits(val as u8)
     }
-    #[doc = "3'b000 - DATOUT = 'Kernel Res'"]
+    #[doc = "no description available"]
     #[inline(always)]
-    pub const fn set_outsel(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x07 << 11usize)) | (((val as u32) & 0x07) << 11usize);
+    pub const fn set_outsel(&mut self, val: super::vals::Outsel) {
+        self.0 = (self.0 & !(0x07 << 11usize)) | (((val.to_bits() as u32) & 0x07) << 11usize);
     }
     #[doc = "Kernels data out options"]
     #[must_use]
     #[inline(always)]
-    pub const fn datout_res(&self) -> u8 {
+    pub const fn datout_res(&self) -> super::vals::DatoutRes {
         let val = (self.0 >> 14usize) & 0x03;
-        val as u8
+        super::vals::DatoutRes::from_bits(val as u8)
     }
     #[doc = "Kernels data out options"]
     #[inline(always)]
-    pub const fn set_datout_res(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x03 << 14usize)) | (((val as u32) & 0x03) << 14usize);
+    pub const fn set_datout_res(&mut self, val: super::vals::DatoutRes) {
+        self.0 = (self.0 & !(0x03 << 14usize)) | (((val.to_bits() as u32) & 0x03) << 14usize);
     }
     #[doc = "AES Kernel Enable"]
     #[must_use]
@@ -1040,14 +1040,14 @@ impl SgiCtrl {
     pub const fn set_gcm_en(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 18usize)) | (((val as u32) & 0x01) << 18usize);
     }
-    #[doc = "PRNG Enable(only if SGI has internal PRNG, Please"]
+    #[doc = "PRNG Enable (only if SGI has internal PRNG)"]
     #[must_use]
     #[inline(always)]
     pub const fn prng_en(&self) -> bool {
         let val = (self.0 >> 19usize) & 0x01;
         val != 0
     }
-    #[doc = "PRNG Enable(only if SGI has internal PRNG, Please"]
+    #[doc = "PRNG Enable (only if SGI has internal PRNG)"]
     #[inline(always)]
     pub const fn set_prng_en(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 19usize)) | (((val as u32) & 0x01) << 19usize);
@@ -1067,38 +1067,38 @@ impl SgiCtrl {
     #[doc = "Triple-DES Key Configuration"]
     #[must_use]
     #[inline(always)]
-    pub const fn tdeskey(&self) -> bool {
+    pub const fn tdeskey(&self) -> super::vals::Tdeskey {
         let val = (self.0 >> 25usize) & 0x01;
-        val != 0
+        super::vals::Tdeskey::from_bits(val as u8)
     }
     #[doc = "Triple-DES Key Configuration"]
     #[inline(always)]
-    pub const fn set_tdeskey(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 25usize)) | (((val as u32) & 0x01) << 25usize);
+    pub const fn set_tdeskey(&mut self, val: super::vals::Tdeskey) {
+        self.0 = (self.0 & !(0x01 << 25usize)) | (((val.to_bits() as u32) & 0x01) << 25usize);
     }
     #[doc = "AES No decryption key schedule"]
     #[must_use]
     #[inline(always)]
-    pub const fn aes_no_kl(&self) -> bool {
+    pub const fn aes_no_kl(&self) -> super::vals::AesNoKl {
         let val = (self.0 >> 26usize) & 0x01;
-        val != 0
+        super::vals::AesNoKl::from_bits(val as u8)
     }
     #[doc = "AES No decryption key schedule"]
     #[inline(always)]
-    pub const fn set_aes_no_kl(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 26usize)) | (((val as u32) & 0x01) << 26usize);
+    pub const fn set_aes_no_kl(&mut self, val: super::vals::AesNoKl) {
+        self.0 = (self.0 & !(0x01 << 26usize)) | (((val.to_bits() as u32) & 0x01) << 26usize);
     }
     #[doc = "AES Dual Selection"]
     #[must_use]
     #[inline(always)]
-    pub const fn aes_sel(&self) -> bool {
+    pub const fn aes_sel(&self) -> super::vals::AesSel {
         let val = (self.0 >> 27usize) & 0x01;
-        val != 0
+        super::vals::AesSel::from_bits(val as u8)
     }
     #[doc = "AES Dual Selection"]
     #[inline(always)]
-    pub const fn set_aes_sel(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 27usize)) | (((val as u32) & 0x01) << 27usize);
+    pub const fn set_aes_sel(&mut self, val: super::vals::AesSel) {
+        self.0 = (self.0 & !(0x01 << 27usize)) | (((val.to_bits() as u32) & 0x01) << 27usize);
     }
     #[doc = "reserved"]
     #[must_use]
@@ -1146,7 +1146,7 @@ impl defmt::Format for SgiCtrl {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "SgiCtrl {{ start: {=bool:?}, decrypt: {=bool:?}, aeskeysz: {=u8:?}, crypto_op: {=u8:?}, insel: {=u8:?}, outsel: {=u8:?}, datout_res: {=u8:?}, aes_en: {=bool:?}, des_en: {=bool:?}, gcm_en: {=bool:?}, prng_en: {=bool:?}, inkeysel: {=u8:?}, tdeskey: {=bool:?}, aes_no_kl: {=bool:?}, aes_sel: {=bool:?}, ctrl_rsvd: {=u8:?} }}",
+            "SgiCtrl {{ start: {:?}, decrypt: {:?}, aeskeysz: {:?}, crypto_op: {:?}, insel: {:?}, outsel: {:?}, datout_res: {:?}, aes_en: {=bool:?}, des_en: {=bool:?}, gcm_en: {=bool:?}, prng_en: {=bool:?}, inkeysel: {=u8:?}, tdeskey: {:?}, aes_no_kl: {:?}, aes_sel: {:?}, ctrl_rsvd: {=u8:?} }}",
             self.start(),
             self.decrypt(),
             self.aeskeysz(),
@@ -1174,38 +1174,38 @@ impl SgiCtrl2 {
     #[doc = "Start Full SGI Flush"]
     #[must_use]
     #[inline(always)]
-    pub const fn flush(&self) -> bool {
+    pub const fn flush(&self) -> super::vals::Flush {
         let val = (self.0 >> 0usize) & 0x01;
-        val != 0
+        super::vals::Flush::from_bits(val as u8)
     }
     #[doc = "Start Full SGI Flush"]
     #[inline(always)]
-    pub const fn set_flush(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 0usize)) | (((val as u32) & 0x01) << 0usize);
+    pub const fn set_flush(&mut self, val: super::vals::Flush) {
+        self.0 = (self.0 & !(0x01 << 0usize)) | (((val.to_bits() as u32) & 0x01) << 0usize);
     }
     #[doc = "Start KEY register-bank Flush"]
     #[must_use]
     #[inline(always)]
-    pub const fn key_flush(&self) -> bool {
+    pub const fn key_flush(&self) -> super::vals::KeyFlush {
         let val = (self.0 >> 1usize) & 0x01;
-        val != 0
+        super::vals::KeyFlush::from_bits(val as u8)
     }
     #[doc = "Start KEY register-bank Flush"]
     #[inline(always)]
-    pub const fn set_key_flush(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 1usize)) | (((val as u32) & 0x01) << 1usize);
+    pub const fn set_key_flush(&mut self, val: super::vals::KeyFlush) {
+        self.0 = (self.0 & !(0x01 << 1usize)) | (((val.to_bits() as u32) & 0x01) << 1usize);
     }
     #[doc = "Start DATIN register-bank Flush"]
     #[must_use]
     #[inline(always)]
-    pub const fn datin_flush(&self) -> bool {
+    pub const fn datin_flush(&self) -> super::vals::DatinFlush {
         let val = (self.0 >> 2usize) & 0x01;
-        val != 0
+        super::vals::DatinFlush::from_bits(val as u8)
     }
     #[doc = "Start DATIN register-bank Flush"]
     #[inline(always)]
-    pub const fn set_datin_flush(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 2usize)) | (((val as u32) & 0x01) << 2usize);
+    pub const fn set_datin_flush(&mut self, val: super::vals::DatinFlush) {
+        self.0 = (self.0 & !(0x01 << 2usize)) | (((val.to_bits() as u32) & 0x01) << 2usize);
     }
     #[doc = "Increment(Triggered by SFR write)"]
     #[must_use]
@@ -1246,14 +1246,14 @@ impl SgiCtrl2 {
     #[doc = "Increment Carry-In control"]
     #[must_use]
     #[inline(always)]
-    pub const fn incr_cin(&self) -> bool {
+    pub const fn incr_cin(&self) -> super::vals::IncrCin {
         let val = (self.0 >> 6usize) & 0x01;
-        val != 0
+        super::vals::IncrCin::from_bits(val as u8)
     }
     #[doc = "Increment Carry-In control"]
     #[inline(always)]
-    pub const fn set_incr_cin(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 6usize)) | (((val as u32) & 0x01) << 6usize);
+    pub const fn set_incr_cin(&mut self, val: super::vals::IncrCin) {
+        self.0 = (self.0 & !(0x01 << 6usize)) | (((val.to_bits() as u32) & 0x01) << 6usize);
     }
     #[doc = "reserved"]
     #[must_use]
@@ -1282,26 +1282,26 @@ impl SgiCtrl2 {
     #[doc = "SFRSEED increment control"]
     #[must_use]
     #[inline(always)]
-    pub const fn smaskstep(&self) -> bool {
+    pub const fn smaskstep(&self) -> super::vals::Smaskstep {
         let val = (self.0 >> 9usize) & 0x01;
-        val != 0
+        super::vals::Smaskstep::from_bits(val as u8)
     }
     #[doc = "SFRSEED increment control"]
     #[inline(always)]
-    pub const fn set_smaskstep(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 9usize)) | (((val as u32) & 0x01) << 9usize);
+    pub const fn set_smaskstep(&mut self, val: super::vals::Smaskstep) {
+        self.0 = (self.0 & !(0x01 << 9usize)) | (((val.to_bits() as u32) & 0x01) << 9usize);
     }
     #[doc = "SFRMASK MASK control"]
     #[must_use]
     #[inline(always)]
-    pub const fn smasksw(&self) -> bool {
+    pub const fn smasksw(&self) -> super::vals::Smasksw {
         let val = (self.0 >> 10usize) & 0x01;
-        val != 0
+        super::vals::Smasksw::from_bits(val as u8)
     }
     #[doc = "SFRMASK MASK control"]
     #[inline(always)]
-    pub const fn set_smasksw(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 10usize)) | (((val as u32) & 0x01) << 10usize);
+    pub const fn set_smasksw(&mut self, val: super::vals::Smasksw) {
+        self.0 = (self.0 & !(0x01 << 10usize)) | (((val.to_bits() as u32) & 0x01) << 10usize);
     }
     #[doc = "reserved"]
     #[must_use]
@@ -1342,26 +1342,26 @@ impl SgiCtrl2 {
     #[doc = "Crypto result location"]
     #[must_use]
     #[inline(always)]
-    pub const fn rkey(&self) -> bool {
+    pub const fn rkey(&self) -> super::vals::Rkey {
         let val = (self.0 >> 21usize) & 0x01;
-        val != 0
+        super::vals::Rkey::from_bits(val as u8)
     }
     #[doc = "Crypto result location"]
     #[inline(always)]
-    pub const fn set_rkey(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 21usize)) | (((val as u32) & 0x01) << 21usize);
+    pub const fn set_rkey(&mut self, val: super::vals::Rkey) {
+        self.0 = (self.0 & !(0x01 << 21usize)) | (((val.to_bits() as u32) & 0x01) << 21usize);
     }
     #[doc = "Byte order of regbank read/write data"]
     #[must_use]
     #[inline(always)]
-    pub const fn bytes_order(&self) -> bool {
+    pub const fn bytes_order(&self) -> super::vals::BytesOrder {
         let val = (self.0 >> 22usize) & 0x01;
-        val != 0
+        super::vals::BytesOrder::from_bits(val as u8)
     }
     #[doc = "Byte order of regbank read/write data"]
     #[inline(always)]
-    pub const fn set_bytes_order(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 22usize)) | (((val as u32) & 0x01) << 22usize);
+    pub const fn set_bytes_order(&mut self, val: super::vals::BytesOrder) {
+        self.0 = (self.0 & !(0x01 << 22usize)) | (((val.to_bits() as u32) & 0x01) << 22usize);
     }
     #[doc = "GCM INXOR"]
     #[must_use]
@@ -1423,7 +1423,7 @@ impl defmt::Format for SgiCtrl2 {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "SgiCtrl2 {{ flush: {=bool:?}, key_flush: {=bool:?}, datin_flush: {=bool:?}, incr: {=bool:?}, xorwr: {=bool:?}, flushwr: {=bool:?}, incr_cin: {=bool:?}, ctrl2_rsvd3: {=bool:?}, smasken: {=bool:?}, smaskstep: {=bool:?}, smasksw: {=bool:?}, ctrl2_rsvd2: {=bool:?}, movem: {=u8:?}, keyres: {=u8:?}, rkey: {=bool:?}, bytes_order: {=bool:?}, gcm_inxor: {=bool:?}, ctrl2_rsvd1: {=u8:?} }}",
+            "SgiCtrl2 {{ flush: {:?}, key_flush: {:?}, datin_flush: {:?}, incr: {=bool:?}, xorwr: {=bool:?}, flushwr: {=bool:?}, incr_cin: {:?}, ctrl2_rsvd3: {=bool:?}, smasken: {=bool:?}, smaskstep: {:?}, smasksw: {:?}, ctrl2_rsvd2: {=bool:?}, movem: {=u8:?}, keyres: {=u8:?}, rkey: {:?}, bytes_order: {:?}, gcm_inxor: {=bool:?}, ctrl2_rsvd1: {=u8:?} }}",
             self.flush(),
             self.key_flush(),
             self.datin_flush(),
@@ -2190,14 +2190,14 @@ impl defmt::Format for SgiDatoutd {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiDummyCtrl(pub u32);
 impl SgiDummyCtrl {
-    #[doc = "DES dummy control"]
+    #[doc = "DES dummy controlPlease refer to the relevant kernel document for details on dummy ctrl"]
     #[must_use]
     #[inline(always)]
     pub const fn ddctrl(&self) -> u16 {
         let val = (self.0 >> 0usize) & 0x03ff;
         val as u16
     }
-    #[doc = "DES dummy control"]
+    #[doc = "DES dummy controlPlease refer to the relevant kernel document for details on dummy ctrl"]
     #[inline(always)]
     pub const fn set_ddctrl(&mut self, val: u16) {
         self.0 = (self.0 & !(0x03ff << 0usize)) | (((val as u32) & 0x03ff) << 0usize);
@@ -2214,14 +2214,14 @@ impl SgiDummyCtrl {
     pub const fn set_dmyctl_rsvd2(&mut self, val: u8) {
         self.0 = (self.0 & !(0x3f << 10usize)) | (((val as u32) & 0x3f) << 10usize);
     }
-    #[doc = "AES dummy control"]
+    #[doc = "AES dummy controlPlease refer to the relevant kernel document for details on dummy ctrl"]
     #[must_use]
     #[inline(always)]
     pub const fn adctrl(&self) -> u16 {
         let val = (self.0 >> 16usize) & 0x03ff;
         val as u16
     }
-    #[doc = "AES dummy control"]
+    #[doc = "AES dummy controlPlease refer to the relevant kernel document for details on dummy ctrl"]
     #[inline(always)]
     pub const fn set_adctrl(&mut self, val: u16) {
         self.0 = (self.0 & !(0x03ff << 16usize)) | (((val as u32) & 0x03ff) << 16usize);
@@ -2328,14 +2328,14 @@ impl defmt::Format for SgiIntEnable {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiIntStatus(pub u32);
 impl SgiIntStatus {
-    #[doc = "Interrupt status flag:"]
+    #[doc = "Interrupt status flag: INT_PDONE is set independent from the interrupt enable SGI_INT_ENABLE"]
     #[must_use]
     #[inline(always)]
     pub const fn int_pdone(&self) -> bool {
         let val = (self.0 >> 0usize) & 0x01;
         val != 0
     }
-    #[doc = "Interrupt status flag:"]
+    #[doc = "Interrupt status flag: INT_PDONE is set independent from the interrupt enable SGI_INT_ENABLE"]
     #[inline(always)]
     pub const fn set_int_pdone(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 0usize)) | (((val as u32) & 0x01) << 0usize);
@@ -3677,14 +3677,14 @@ impl defmt::Format for SgiKey7d {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiKeyCtrl(pub u32);
 impl SgiKeyCtrl {
-    #[doc = "SGI Key control register(1-bit per KEY SFR)"]
+    #[doc = "SGI Key control register(1-bit per KEY SFR) 1'b0 - Key SFR is readable 1'b1 - Key SFR is not-readable(write-only)"]
     #[must_use]
     #[inline(always)]
     pub const fn key_wo(&self) -> u32 {
         let val = (self.0 >> 0usize) & 0xffff_ffff;
         val as u32
     }
-    #[doc = "SGI Key control register(1-bit per KEY SFR)"]
+    #[doc = "SGI Key control register(1-bit per KEY SFR) 1'b0 - Key SFR is readable 1'b1 - Key SFR is not-readable(write-only)"]
     #[inline(always)]
     pub const fn set_key_wo(&mut self, val: u32) {
         self.0 = (self.0 & !(0xffff_ffff << 0usize)) | (((val as u32) & 0xffff_ffff) << 0usize);
@@ -3829,14 +3829,14 @@ impl defmt::Format for SgiModuleId {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiPrngSwSeed(pub u32);
 impl SgiPrngSwSeed {
-    #[doc = "32-bits SEED field. A write to the SEED field"]
+    #[doc = "32-bits SEED field. A write to the SEED field will seed the internal PRNG"]
     #[must_use]
     #[inline(always)]
     pub const fn seed(&self) -> u32 {
         let val = (self.0 >> 0usize) & 0xffff_ffff;
         val as u32
     }
-    #[doc = "32-bits SEED field. A write to the SEED field"]
+    #[doc = "32-bits SEED field. A write to the SEED field will seed the internal PRNG"]
     #[inline(always)]
     pub const fn set_seed(&mut self, val: u32) {
         self.0 = (self.0 & !(0xffff_ffff << 0usize)) | (((val as u32) & 0xffff_ffff) << 0usize);
@@ -3959,26 +3959,26 @@ impl SgiSha2Ctrl {
     #[doc = "SHA mode normal or automatic"]
     #[must_use]
     #[inline(always)]
-    pub const fn sha2_mode(&self) -> bool {
+    pub const fn sha2_mode(&self) -> super::vals::Sha2Mode {
         let val = (self.0 >> 1usize) & 0x01;
-        val != 0
+        super::vals::Sha2Mode::from_bits(val as u8)
     }
     #[doc = "SHA mode normal or automatic"]
     #[inline(always)]
-    pub const fn set_sha2_mode(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 1usize)) | (((val as u32) & 0x01) << 1usize);
+    pub const fn set_sha2_mode(&mut self, val: super::vals::Sha2Mode) {
+        self.0 = (self.0 & !(0x01 << 1usize)) | (((val.to_bits() as u32) & 0x01) << 1usize);
     }
-    #[doc = "SHA size 0=224;1=256;2=384;3=512"]
+    #[doc = "Indicates SHA size"]
     #[must_use]
     #[inline(always)]
-    pub const fn sha2_size(&self) -> u8 {
+    pub const fn sha2_size(&self) -> super::vals::Sha2Size {
         let val = (self.0 >> 2usize) & 0x03;
-        val as u8
+        super::vals::Sha2Size::from_bits(val as u8)
     }
-    #[doc = "SHA size 0=224;1=256;2=384;3=512"]
+    #[doc = "Indicates SHA size"]
     #[inline(always)]
-    pub const fn set_sha2_size(&mut self, val: u8) {
-        self.0 = (self.0 & !(0x03 << 2usize)) | (((val as u32) & 0x03) << 2usize);
+    pub const fn set_sha2_size(&mut self, val: super::vals::Sha2Size) {
+        self.0 = (self.0 & !(0x03 << 2usize)) | (((val.to_bits() as u32) & 0x03) << 2usize);
     }
     #[doc = "SHA FIFO low limit"]
     #[must_use]
@@ -4007,14 +4007,14 @@ impl SgiSha2Ctrl {
     #[doc = "SHA Calculation counter enable"]
     #[must_use]
     #[inline(always)]
-    pub const fn sha2_count_en(&self) -> bool {
+    pub const fn sha2_count_en(&self) -> super::vals::Sha2CountEn {
         let val = (self.0 >> 12usize) & 0x01;
-        val != 0
+        super::vals::Sha2CountEn::from_bits(val as u8)
     }
     #[doc = "SHA Calculation counter enable"]
     #[inline(always)]
-    pub const fn set_sha2_count_en(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 12usize)) | (((val as u32) & 0x01) << 12usize);
+    pub const fn set_sha2_count_en(&mut self, val: super::vals::Sha2CountEn) {
+        self.0 = (self.0 & !(0x01 << 12usize)) | (((val.to_bits() as u32) & 0x01) << 12usize);
     }
     #[doc = "SHA HASH reload"]
     #[must_use]
@@ -4031,26 +4031,26 @@ impl SgiSha2Ctrl {
     #[doc = "STOP SHA AUTO mode"]
     #[must_use]
     #[inline(always)]
-    pub const fn sha2_stop(&self) -> bool {
+    pub const fn sha2_stop(&self) -> super::vals::Sha2Stop {
         let val = (self.0 >> 14usize) & 0x01;
-        val != 0
+        super::vals::Sha2Stop::from_bits(val as u8)
     }
     #[doc = "STOP SHA AUTO mode"]
     #[inline(always)]
-    pub const fn set_sha2_stop(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 14usize)) | (((val as u32) & 0x01) << 14usize);
+    pub const fn set_sha2_stop(&mut self, val: super::vals::Sha2Stop) {
+        self.0 = (self.0 & !(0x01 << 14usize)) | (((val.to_bits() as u32) & 0x01) << 14usize);
     }
     #[doc = "SHA no automatic HASH initialisation"]
     #[must_use]
     #[inline(always)]
-    pub const fn no_auto_init(&self) -> bool {
+    pub const fn no_auto_init(&self) -> super::vals::NoAutoInit {
         let val = (self.0 >> 15usize) & 0x01;
-        val != 0
+        super::vals::NoAutoInit::from_bits(val as u8)
     }
     #[doc = "SHA no automatic HASH initialisation"]
     #[inline(always)]
-    pub const fn set_no_auto_init(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 15usize)) | (((val as u32) & 0x01) << 15usize);
+    pub const fn set_no_auto_init(&mut self, val: super::vals::NoAutoInit) {
+        self.0 = (self.0 & !(0x01 << 15usize)) | (((val.to_bits() as u32) & 0x01) << 15usize);
     }
     #[doc = "reserved"]
     #[must_use]
@@ -4092,7 +4092,7 @@ impl defmt::Format for SgiSha2Ctrl {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "SgiSha2Ctrl {{ sha2_en: {=bool:?}, sha2_mode: {=bool:?}, sha2_size: {=u8:?}, sha2_low_lim: {=u8:?}, sha2_high_lim: {=u8:?}, sha2_count_en: {=bool:?}, hash_reload: {=bool:?}, sha2_stop: {=bool:?}, no_auto_init: {=bool:?}, sha2ctl_rsvd: {=u16:?} }}",
+            "SgiSha2Ctrl {{ sha2_en: {=bool:?}, sha2_mode: {:?}, sha2_size: {:?}, sha2_low_lim: {=u8:?}, sha2_high_lim: {=u8:?}, sha2_count_en: {:?}, hash_reload: {=bool:?}, sha2_stop: {:?}, no_auto_init: {:?}, sha2ctl_rsvd: {=u16:?} }}",
             self.sha2_en(),
             self.sha2_mode(),
             self.sha2_size(),
@@ -4148,14 +4148,14 @@ impl defmt::Format for SgiShaFifo {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SgiStatus(pub u32);
 impl SgiStatus {
-    #[doc = "Combined busy flag that remains high"]
+    #[doc = "Combined busy flag that remains high until end of calculation"]
     #[must_use]
     #[inline(always)]
     pub const fn busy(&self) -> bool {
         let val = (self.0 >> 0usize) & 0x01;
         val != 0
     }
-    #[doc = "Combined busy flag that remains high"]
+    #[doc = "Combined busy flag that remains high until end of calculation"]
     #[inline(always)]
     pub const fn set_busy(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 0usize)) | (((val as u32) & 0x01) << 0usize);

@@ -19,7 +19,7 @@ unsafe extern "C" {
     fn TDET();
     fn WUU0();
     fn CAN0();
-    fn CAN1();
+    fn RESERVED36();
     fn FLEXIO();
     fn I3C0();
     fn LPI2C0();
@@ -58,7 +58,7 @@ unsafe extern "C" {
     fn ADC1();
     fn CMP0();
     fn CMP1();
-    fn CMP2();
+    fn RESERVED82();
     fn DAC0();
     fn GPIO0();
     fn GPIO1();
@@ -77,18 +77,19 @@ unsafe extern "C" {
     fn EQDC1_HOME();
     fn EQDC1_WATCHDOG();
     fn EQDC1_INDEX();
-    fn LPUART5();
+    fn RESERVED111();
     fn MAU();
     fn SMARTDMA();
     fn CDOG1();
     fn PKC();
     fn SGI();
     fn TRNG0();
-    fn ADC2();
-    fn ADC3();
+    fn SECURE_ERR();
+    fn RESERVED132();
+    fn RESERVED133();
     fn RTC();
     fn RTC_1HZ();
-    fn SLCD();
+    fn RESERVED137();
 }
 pub union Vector {
     _handler: unsafe extern "C" fn(),
@@ -123,7 +124,9 @@ pub static __INTERRUPTS: [Vector; 122] = [
     Vector { _handler: TDET },
     Vector { _handler: WUU0 },
     Vector { _handler: CAN0 },
-    Vector { _handler: CAN1 },
+    Vector {
+        _handler: RESERVED36,
+    },
     Vector { _reserved: 0 },
     Vector { _reserved: 0 },
     Vector { _handler: FLEXIO },
@@ -191,7 +194,9 @@ pub static __INTERRUPTS: [Vector; 122] = [
     Vector { _handler: ADC1 },
     Vector { _handler: CMP0 },
     Vector { _handler: CMP1 },
-    Vector { _handler: CMP2 },
+    Vector {
+        _handler: RESERVED82,
+    },
     Vector { _handler: DAC0 },
     Vector { _reserved: 0 },
     Vector { _reserved: 0 },
@@ -240,7 +245,9 @@ pub static __INTERRUPTS: [Vector; 122] = [
     Vector { _reserved: 0 },
     Vector { _reserved: 0 },
     Vector { _reserved: 0 },
-    Vector { _handler: LPUART5 },
+    Vector {
+        _handler: RESERVED111,
+    },
     Vector { _reserved: 0 },
     Vector { _reserved: 0 },
     Vector { _reserved: 0 },
@@ -259,12 +266,20 @@ pub static __INTERRUPTS: [Vector; 122] = [
     Vector { _handler: SGI },
     Vector { _reserved: 0 },
     Vector { _handler: TRNG0 },
+    Vector {
+        _handler: SECURE_ERR,
+    },
     Vector { _reserved: 0 },
-    Vector { _reserved: 0 },
-    Vector { _handler: ADC2 },
-    Vector { _handler: ADC3 },
+    Vector {
+        _handler: RESERVED132,
+    },
+    Vector {
+        _handler: RESERVED133,
+    },
     Vector { _reserved: 0 },
     Vector { _handler: RTC },
     Vector { _handler: RTC_1HZ },
-    Vector { _handler: SLCD },
+    Vector {
+        _handler: RESERVED137,
+    },
 ];

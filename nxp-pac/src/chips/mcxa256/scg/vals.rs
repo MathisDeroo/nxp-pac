@@ -710,7 +710,7 @@ pub enum Source {
     #[doc = "FIRC 45 MHz clock. FIRC_SCLK_PERIPH_EN needs to be set to use FIRC 45 MHz clock."]
     FIRC = 0x01,
     #[doc = "ROSC"]
-    RSVD = 0x02,
+    ROSC = 0x02,
     #[doc = "SIRC 12 MHz clock"]
     SIRC = 0x03,
 }

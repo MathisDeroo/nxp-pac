@@ -147,23 +147,10 @@ impl Syscon {
     ) -> crate::common::Reg<regs::BinaryCodeMsb, crate::common::R> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0b6cusize) as _) }
     }
-    #[doc = "UDF Control"]
-    #[inline(always)]
-    pub const fn els_udf(self) -> crate::common::Reg<regs::ElsUdf, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0e10usize) as _) }
-    }
     #[doc = "MSF Configuration"]
     #[inline(always)]
     pub const fn msfcfg(self) -> crate::common::Reg<regs::Msfcfg, crate::common::RW> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0e1cusize) as _) }
-    }
-    #[doc = "Device UID n"]
-    #[inline(always)]
-    pub const fn els_uid(self, n: usize) -> crate::common::Reg<regs::ElsUid, crate::common::RW> {
-        assert!(n < 4usize);
-        unsafe {
-            crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x0e20usize + n * 4usize) as _)
-        }
     }
     #[doc = "ROP State Register"]
     #[inline(always)]

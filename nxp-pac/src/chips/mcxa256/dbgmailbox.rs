@@ -1,4 +1,4 @@
-#[doc = "DBGMB"]
+#[doc = "Debug Mailbox"]
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct Dbgmailbox {
     ptr: *mut u8,

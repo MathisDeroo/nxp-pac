@@ -110,18 +110,6 @@ impl Mod {
     pub const fn set_lock(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 5usize)) | (((val as u32) & 0x01) << 5usize);
     }
-    #[doc = "Debug Enable"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn debug_en(&self) -> bool {
-        let val = (self.0 >> 6usize) & 0x01;
-        val != 0
-    }
-    #[doc = "Debug Enable"]
-    #[inline(always)]
-    pub const fn set_debug_en(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 6usize)) | (((val as u32) & 0x01) << 6usize);
-    }
 }
 impl Default for Mod {
     #[inline(always)]
@@ -138,7 +126,6 @@ impl core::fmt::Debug for Mod {
             .field("wdint", &self.wdint())
             .field("wdprotect", &self.wdprotect())
             .field("lock", &self.lock())
-            .field("debug_en", &self.debug_en())
             .finish()
     }
 }
@@ -147,14 +134,13 @@ impl defmt::Format for Mod {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "Mod {{ wden: {:?}, wdreset: {:?}, wdtof: {=bool:?}, wdint: {=bool:?}, wdprotect: {:?}, lock: {=bool:?}, debug_en: {=bool:?} }}",
+            "Mod {{ wden: {:?}, wdreset: {:?}, wdtof: {=bool:?}, wdint: {=bool:?}, wdprotect: {:?}, lock: {=bool:?} }}",
             self.wden(),
             self.wdreset(),
             self.wdtof(),
             self.wdint(),
             self.wdprotect(),
-            self.lock(),
-            self.debug_en()
+            self.lock()
         )
     }
 }

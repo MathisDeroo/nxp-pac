@@ -201,6 +201,47 @@ impl defmt::Format for ActiveVdelay {
         )
     }
 }
+#[doc = "LDO_CORE Configuration"]
+#[repr(transparent)]
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub struct CoreldoCfg(pub u32);
+impl CoreldoCfg {
+    #[doc = "CORELDO SPARE0"]
+    #[must_use]
+    #[inline(always)]
+    pub const fn coreldo_spare0(&self) -> bool {
+        let val = (self.0 >> 16usize) & 0x01;
+        val != 0
+    }
+    #[doc = "CORELDO SPARE0"]
+    #[inline(always)]
+    pub const fn set_coreldo_spare0(&mut self, val: bool) {
+        self.0 = (self.0 & !(0x01 << 16usize)) | (((val as u32) & 0x01) << 16usize);
+    }
+}
+impl Default for CoreldoCfg {
+    #[inline(always)]
+    fn default() -> CoreldoCfg {
+        CoreldoCfg(0)
+    }
+}
+impl core::fmt::Debug for CoreldoCfg {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+        f.debug_struct("CoreldoCfg")
+            .field("coreldo_spare0", &self.coreldo_spare0())
+            .finish()
+    }
+}
+#[cfg(feature = "defmt")]
+impl defmt::Format for CoreldoCfg {
+    fn format(&self, f: defmt::Formatter) {
+        defmt::write!(
+            f,
+            "CoreldoCfg {{ coreldo_spare0: {=bool:?} }}",
+            self.coreldo_spare0()
+        )
+    }
+}
 #[doc = "External Voltage Domain Configuration"]
 #[repr(transparent)]
 #[derive(Copy, Clone, Eq, PartialEq)]

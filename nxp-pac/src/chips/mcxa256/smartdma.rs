@@ -34,26 +34,6 @@ impl Smartdma {
     pub const fn sp(self) -> crate::common::Reg<regs::Sp, crate::common::R> {
         unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x2cusize) as _) }
     }
-    #[doc = "Breakpoint Address"]
-    #[inline(always)]
-    pub const fn break_addr(self) -> crate::common::Reg<regs::BreakAddr, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x30usize) as _) }
-    }
-    #[doc = "Breakpoint Vector"]
-    #[inline(always)]
-    pub const fn break_vect(self) -> crate::common::Reg<regs::BreakVect, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x34usize) as _) }
-    }
-    #[doc = "Emergency Vector"]
-    #[inline(always)]
-    pub const fn emer_vect(self) -> crate::common::Reg<regs::EmerVect, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x38usize) as _) }
-    }
-    #[doc = "Emergency Select"]
-    #[inline(always)]
-    pub const fn emer_sel(self) -> crate::common::Reg<regs::EmerSel, crate::common::RW> {
-        unsafe { crate::common::Reg::from_ptr(self.ptr.wrapping_add(0x3cusize) as _) }
-    }
     #[doc = "ARM to EZH Interrupt Control"]
     #[inline(always)]
     pub const fn arm2ezh(self) -> crate::common::Reg<regs::Arm2ezh, crate::common::RW> {

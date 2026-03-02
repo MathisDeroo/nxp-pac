@@ -1102,112 +1102,6 @@ impl defmt::Format for ElsOtpLcStateDp {
         )
     }
 }
-#[doc = "UDF Control"]
-#[repr(transparent)]
-#[derive(Copy, Clone, Eq, PartialEq)]
-pub struct ElsUdf(pub u32);
-impl ElsUdf {
-    #[doc = "UDF KEY Select"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn key_sel(&self) -> super::vals::KeySel {
-        let val = (self.0 >> 0usize) & 0x03;
-        super::vals::KeySel::from_bits(val as u8)
-    }
-    #[doc = "UDF KEY Select"]
-    #[inline(always)]
-    pub const fn set_key_sel(&mut self, val: super::vals::KeySel) {
-        self.0 = (self.0 & !(0x03 << 0usize)) | (((val.to_bits() as u32) & 0x03) << 0usize);
-    }
-    #[doc = "UID register hidden control. Write values other than 1010b, locked the write of UID_HIDDEN until a system reset."]
-    #[must_use]
-    #[inline(always)]
-    pub const fn uid_hidden(&self) -> super::vals::UidHidden {
-        let val = (self.0 >> 24usize) & 0x0f;
-        super::vals::UidHidden::from_bits(val as u8)
-    }
-    #[doc = "UID register hidden control. Write values other than 1010b, locked the write of UID_HIDDEN until a system reset."]
-    #[inline(always)]
-    pub const fn set_uid_hidden(&mut self, val: super::vals::UidHidden) {
-        self.0 = (self.0 & !(0x0f << 24usize)) | (((val.to_bits() as u32) & 0x0f) << 24usize);
-    }
-    #[doc = "UDF register hidden control. Write values other than 1010b, locked the write of UDF_HIDDEN until a system reset."]
-    #[must_use]
-    #[inline(always)]
-    pub const fn udf_hidden(&self) -> super::vals::UdfHidden {
-        let val = (self.0 >> 28usize) & 0x0f;
-        super::vals::UdfHidden::from_bits(val as u8)
-    }
-    #[doc = "UDF register hidden control. Write values other than 1010b, locked the write of UDF_HIDDEN until a system reset."]
-    #[inline(always)]
-    pub const fn set_udf_hidden(&mut self, val: super::vals::UdfHidden) {
-        self.0 = (self.0 & !(0x0f << 28usize)) | (((val.to_bits() as u32) & 0x0f) << 28usize);
-    }
-}
-impl Default for ElsUdf {
-    #[inline(always)]
-    fn default() -> ElsUdf {
-        ElsUdf(0)
-    }
-}
-impl core::fmt::Debug for ElsUdf {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        f.debug_struct("ElsUdf")
-            .field("key_sel", &self.key_sel())
-            .field("uid_hidden", &self.uid_hidden())
-            .field("udf_hidden", &self.udf_hidden())
-            .finish()
-    }
-}
-#[cfg(feature = "defmt")]
-impl defmt::Format for ElsUdf {
-    fn format(&self, f: defmt::Formatter) {
-        defmt::write!(
-            f,
-            "ElsUdf {{ key_sel: {:?}, uid_hidden: {:?}, udf_hidden: {:?} }}",
-            self.key_sel(),
-            self.uid_hidden(),
-            self.udf_hidden()
-        )
-    }
-}
-#[doc = "Device UID n"]
-#[repr(transparent)]
-#[derive(Copy, Clone, Eq, PartialEq)]
-pub struct ElsUid(pub u32);
-impl ElsUid {
-    #[doc = "UID"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn uid0(&self) -> u32 {
-        let val = (self.0 >> 0usize) & 0xffff_ffff;
-        val as u32
-    }
-    #[doc = "UID"]
-    #[inline(always)]
-    pub const fn set_uid0(&mut self, val: u32) {
-        self.0 = (self.0 & !(0xffff_ffff << 0usize)) | (((val as u32) & 0xffff_ffff) << 0usize);
-    }
-}
-impl Default for ElsUid {
-    #[inline(always)]
-    fn default() -> ElsUid {
-        ElsUid(0)
-    }
-}
-impl core::fmt::Debug for ElsUid {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        f.debug_struct("ElsUid")
-            .field("uid0", &self.uid0())
-            .finish()
-    }
-}
-#[cfg(feature = "defmt")]
-impl defmt::Format for ElsUid {
-    fn format(&self, f: defmt::Formatter) {
-        defmt::write!(f, "ElsUid {{ uid0: {=u32:?} }}", self.uid0())
-    }
-}
 #[doc = "FRO_HF_DIV Clock Divider"]
 #[repr(transparent)]
 #[derive(Copy, Clone, Eq, PartialEq)]
@@ -1979,14 +1873,14 @@ impl Protlvl {
     pub const fn set_locknsmpu(&mut self, val: super::vals::Locknsmpu) {
         self.0 = (self.0 & !(0x01 << 16usize)) | (((val.to_bits() as u32) & 0x01) << 16usize);
     }
-    #[doc = "This 1-bit field provides a mechanism to limit writes to the this register to protect its contents. Once set, this bit remains asserted until a system reset."]
+    #[doc = "This 1-bit field provides a mechanism to limit writes to this register to protect its contents. Once set, this bit remains asserted until a system reset."]
     #[must_use]
     #[inline(always)]
     pub const fn lock(&self) -> super::vals::ProtlvlLock {
         let val = (self.0 >> 31usize) & 0x01;
         super::vals::ProtlvlLock::from_bits(val as u8)
     }
-    #[doc = "This 1-bit field provides a mechanism to limit writes to the this register to protect its contents. Once set, this bit remains asserted until a system reset."]
+    #[doc = "This 1-bit field provides a mechanism to limit writes to this register to protect its contents. Once set, this bit remains asserted until a system reset."]
     #[inline(always)]
     pub const fn set_lock(&mut self, val: super::vals::ProtlvlLock) {
         self.0 = (self.0 & !(0x01 << 31usize)) | (((val.to_bits() as u32) & 0x01) << 31usize);
@@ -2336,28 +2230,28 @@ impl Remap {
     pub const fn set_cpu0_sbus(&mut self, val: super::vals::RemapCpu0Sbus) {
         self.0 = (self.0 & !(0x03 << 2usize)) | (((val.to_bits() as u32) & 0x03) << 2usize);
     }
-    #[doc = "RAMX0 address remap for SmartDMA D-BUS"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn smart_dma_d(&self) -> super::vals::SmartDmaD {
-        let val = (self.0 >> 4usize) & 0x03;
-        super::vals::SmartDmaD::from_bits(val as u8)
-    }
-    #[doc = "RAMX0 address remap for SmartDMA D-BUS"]
-    #[inline(always)]
-    pub const fn set_smart_dma_d(&mut self, val: super::vals::SmartDmaD) {
-        self.0 = (self.0 & !(0x03 << 4usize)) | (((val.to_bits() as u32) & 0x03) << 4usize);
-    }
     #[doc = "RAMX0 address remap for SmartDMA I-BUS"]
     #[must_use]
     #[inline(always)]
     pub const fn smart_dma_i(&self) -> super::vals::SmartDmaI {
-        let val = (self.0 >> 6usize) & 0x03;
+        let val = (self.0 >> 4usize) & 0x03;
         super::vals::SmartDmaI::from_bits(val as u8)
     }
     #[doc = "RAMX0 address remap for SmartDMA I-BUS"]
     #[inline(always)]
     pub const fn set_smart_dma_i(&mut self, val: super::vals::SmartDmaI) {
+        self.0 = (self.0 & !(0x03 << 4usize)) | (((val.to_bits() as u32) & 0x03) << 4usize);
+    }
+    #[doc = "RAMX0 address remap for SmartDMA D-BUS"]
+    #[must_use]
+    #[inline(always)]
+    pub const fn smart_dma_d(&self) -> super::vals::SmartDmaD {
+        let val = (self.0 >> 6usize) & 0x03;
+        super::vals::SmartDmaD::from_bits(val as u8)
+    }
+    #[doc = "RAMX0 address remap for SmartDMA D-BUS"]
+    #[inline(always)]
+    pub const fn set_smart_dma_d(&mut self, val: super::vals::SmartDmaD) {
         self.0 = (self.0 & !(0x03 << 6usize)) | (((val.to_bits() as u32) & 0x03) << 6usize);
     }
     #[doc = "RAMX0 address remap for DMA0"]
@@ -2396,14 +2290,14 @@ impl Remap {
     pub const fn set_usb0(&mut self, val: super::vals::Usb0) {
         self.0 = (self.0 & !(0x03 << 24usize)) | (((val.to_bits() as u32) & 0x03) << 24usize);
     }
-    #[doc = "This 1-bit field provides a mechanism to limit writes to the this register to protect its contents. Once set, this bit remains asserted until a system reset."]
+    #[doc = "This 1-bit field provides a mechanism to limit writes to this register to protect its contents. Once set, this bit remains asserted until a system reset."]
     #[must_use]
     #[inline(always)]
     pub const fn lock(&self) -> super::vals::RemapLock {
         let val = (self.0 >> 31usize) & 0x01;
         super::vals::RemapLock::from_bits(val as u8)
     }
-    #[doc = "This 1-bit field provides a mechanism to limit writes to the this register to protect its contents. Once set, this bit remains asserted until a system reset."]
+    #[doc = "This 1-bit field provides a mechanism to limit writes to this register to protect its contents. Once set, this bit remains asserted until a system reset."]
     #[inline(always)]
     pub const fn set_lock(&mut self, val: super::vals::RemapLock) {
         self.0 = (self.0 & !(0x01 << 31usize)) | (((val.to_bits() as u32) & 0x01) << 31usize);
@@ -2419,8 +2313,8 @@ impl core::fmt::Debug for Remap {
     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         f.debug_struct("Remap")
             .field("cpu0_sbus", &self.cpu0_sbus())
-            .field("smart_dma_d", &self.smart_dma_d())
             .field("smart_dma_i", &self.smart_dma_i())
+            .field("smart_dma_d", &self.smart_dma_d())
             .field("dma0", &self.dma0())
             .field("pkc", &self.pkc())
             .field("usb0", &self.usb0())
@@ -2433,10 +2327,10 @@ impl defmt::Format for Remap {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "Remap {{ cpu0_sbus: {:?}, smart_dma_d: {:?}, smart_dma_i: {:?}, dma0: {:?}, pkc: {:?}, usb0: {:?}, lock: {:?} }}",
+            "Remap {{ cpu0_sbus: {:?}, smart_dma_i: {:?}, smart_dma_d: {:?}, dma0: {:?}, pkc: {:?}, usb0: {:?}, lock: {:?} }}",
             self.cpu0_sbus(),
-            self.smart_dma_d(),
             self.smart_dma_i(),
+            self.smart_dma_d(),
             self.dma0(),
             self.pkc(),
             self.usb0(),
@@ -2569,122 +2463,122 @@ impl defmt::Format for Slowclkdiv {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub struct SmartDmaint(pub u32);
 impl SmartDmaint {
-    #[doc = "SmartDMA hijack NVIC IRQ1"]
+    #[doc = "SmartDMA hijack NVIC IRQ2"]
     #[must_use]
     #[inline(always)]
     pub const fn int0(&self) -> bool {
         let val = (self.0 >> 0usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ1"]
+    #[doc = "SmartDMA hijack NVIC IRQ2"]
     #[inline(always)]
     pub const fn set_int0(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 0usize)) | (((val as u32) & 0x01) << 0usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ17"]
+    #[doc = "SmartDMA hijack NVIC IRQ23"]
     #[must_use]
     #[inline(always)]
     pub const fn int1(&self) -> bool {
         let val = (self.0 >> 1usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ17"]
+    #[doc = "SmartDMA hijack NVIC IRQ23"]
     #[inline(always)]
     pub const fn set_int1(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 1usize)) | (((val as u32) & 0x01) << 1usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ18"]
+    #[doc = "SmartDMA hijack NVIC IRQ26"]
     #[must_use]
     #[inline(always)]
     pub const fn int2(&self) -> bool {
         let val = (self.0 >> 2usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ18"]
+    #[doc = "SmartDMA hijack NVIC IRQ26"]
     #[inline(always)]
     pub const fn set_int2(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 2usize)) | (((val as u32) & 0x01) << 2usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ29"]
+    #[doc = "SmartDMA hijack NVIC IRQ27"]
     #[must_use]
     #[inline(always)]
     pub const fn int3(&self) -> bool {
         let val = (self.0 >> 3usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ29"]
+    #[doc = "SmartDMA hijack NVIC IRQ27"]
     #[inline(always)]
     pub const fn set_int3(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 3usize)) | (((val as u32) & 0x01) << 3usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ30"]
+    #[doc = "SmartDMA hijack NVIC IRQ28"]
     #[must_use]
     #[inline(always)]
     pub const fn int4(&self) -> bool {
         let val = (self.0 >> 4usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ30"]
+    #[doc = "SmartDMA hijack NVIC IRQ28"]
     #[inline(always)]
     pub const fn set_int4(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 4usize)) | (((val as u32) & 0x01) << 4usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ31"]
+    #[doc = "SmartDMA hijack NVIC IRQ29"]
     #[must_use]
     #[inline(always)]
     pub const fn int5(&self) -> bool {
         let val = (self.0 >> 5usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ31"]
+    #[doc = "SmartDMA hijack NVIC IRQ29"]
     #[inline(always)]
     pub const fn set_int5(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 5usize)) | (((val as u32) & 0x01) << 5usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ32"]
+    #[doc = "SmartDMA hijack NVIC IRQ31"]
     #[must_use]
     #[inline(always)]
     pub const fn int6(&self) -> bool {
         let val = (self.0 >> 6usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ32"]
+    #[doc = "SmartDMA hijack NVIC IRQ31"]
     #[inline(always)]
     pub const fn set_int6(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 6usize)) | (((val as u32) & 0x01) << 6usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ33"]
+    #[doc = "SmartDMA hijack NVIC IRQ32"]
     #[must_use]
     #[inline(always)]
     pub const fn int7(&self) -> bool {
         let val = (self.0 >> 7usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ33"]
+    #[doc = "SmartDMA hijack NVIC IRQ32"]
     #[inline(always)]
     pub const fn set_int7(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 7usize)) | (((val as u32) & 0x01) << 7usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ34"]
+    #[doc = "SmartDMA hijack NVIC IRQ33"]
     #[must_use]
     #[inline(always)]
     pub const fn int8(&self) -> bool {
         let val = (self.0 >> 8usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ34"]
+    #[doc = "SmartDMA hijack NVIC IRQ33"]
     #[inline(always)]
     pub const fn set_int8(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 8usize)) | (((val as u32) & 0x01) << 8usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ35"]
+    #[doc = "SmartDMA hijack NVIC IRQ34"]
     #[must_use]
     #[inline(always)]
     pub const fn int9(&self) -> bool {
         let val = (self.0 >> 9usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ35"]
+    #[doc = "SmartDMA hijack NVIC IRQ34"]
     #[inline(always)]
     pub const fn set_int9(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 9usize)) | (((val as u32) & 0x01) << 9usize);
@@ -2701,161 +2595,137 @@ impl SmartDmaint {
     pub const fn set_int10(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 10usize)) | (((val as u32) & 0x01) << 10usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ37"]
+    #[doc = "SmartDMA hijack NVIC IRQ39"]
     #[must_use]
     #[inline(always)]
     pub const fn int11(&self) -> bool {
         let val = (self.0 >> 11usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ37"]
+    #[doc = "SmartDMA hijack NVIC IRQ39"]
     #[inline(always)]
     pub const fn set_int11(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 11usize)) | (((val as u32) & 0x01) << 11usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ38"]
+    #[doc = "SmartDMA hijack NVIC IRQ40"]
     #[must_use]
     #[inline(always)]
     pub const fn int12(&self) -> bool {
         let val = (self.0 >> 12usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ38"]
+    #[doc = "SmartDMA hijack NVIC IRQ40"]
     #[inline(always)]
     pub const fn set_int12(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 12usize)) | (((val as u32) & 0x01) << 12usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ39"]
+    #[doc = "SmartDMA hijack NVIC IRQ41"]
     #[must_use]
     #[inline(always)]
     pub const fn int13(&self) -> bool {
         let val = (self.0 >> 13usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ39"]
+    #[doc = "SmartDMA hijack NVIC IRQ41"]
     #[inline(always)]
     pub const fn set_int13(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 13usize)) | (((val as u32) & 0x01) << 13usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ40"]
+    #[doc = "SmartDMA hijack NVIC IRQ59"]
     #[must_use]
     #[inline(always)]
     pub const fn int14(&self) -> bool {
         let val = (self.0 >> 14usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ40"]
+    #[doc = "SmartDMA hijack NVIC IRQ59"]
     #[inline(always)]
     pub const fn set_int14(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 14usize)) | (((val as u32) & 0x01) << 14usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ41"]
+    #[doc = "SmartDMA hijack NVIC IRQ62"]
     #[must_use]
     #[inline(always)]
     pub const fn int15(&self) -> bool {
         let val = (self.0 >> 15usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ41"]
+    #[doc = "SmartDMA hijack NVIC IRQ62"]
     #[inline(always)]
     pub const fn set_int15(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 15usize)) | (((val as u32) & 0x01) << 15usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ42"]
+    #[doc = "SmartDMA hijack NVIC IRQ64"]
     #[must_use]
     #[inline(always)]
     pub const fn int16(&self) -> bool {
         let val = (self.0 >> 16usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ42"]
+    #[doc = "SmartDMA hijack NVIC IRQ64"]
     #[inline(always)]
     pub const fn set_int16(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 16usize)) | (((val as u32) & 0x01) << 16usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ45"]
+    #[doc = "SmartDMA hijack NVIC IRQ71"]
     #[must_use]
     #[inline(always)]
     pub const fn int17(&self) -> bool {
         let val = (self.0 >> 17usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ45"]
+    #[doc = "SmartDMA hijack NVIC IRQ71"]
     #[inline(always)]
     pub const fn set_int17(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 17usize)) | (((val as u32) & 0x01) << 17usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ47"]
+    #[doc = "SmartDMA hijack NVIC IRQ72"]
     #[must_use]
     #[inline(always)]
     pub const fn int18(&self) -> bool {
         let val = (self.0 >> 18usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ47"]
+    #[doc = "SmartDMA hijack NVIC IRQ72"]
     #[inline(always)]
     pub const fn set_int18(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 18usize)) | (((val as u32) & 0x01) << 18usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ50"]
+    #[doc = "SmartDMA hijack NVIC IRQ73"]
     #[must_use]
     #[inline(always)]
     pub const fn int19(&self) -> bool {
         let val = (self.0 >> 19usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ50"]
+    #[doc = "SmartDMA hijack NVIC IRQ73"]
     #[inline(always)]
     pub const fn set_int19(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 19usize)) | (((val as u32) & 0x01) << 19usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ51"]
+    #[doc = "SmartDMA hijack NVIC IRQ74"]
     #[must_use]
     #[inline(always)]
     pub const fn int20(&self) -> bool {
         let val = (self.0 >> 20usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ51"]
+    #[doc = "SmartDMA hijack NVIC IRQ74"]
     #[inline(always)]
     pub const fn set_int20(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 20usize)) | (((val as u32) & 0x01) << 20usize);
     }
-    #[doc = "SmartDMA hijack NVIC IRQ66"]
+    #[doc = "SmartDMA hijack NVIC IRQ75"]
     #[must_use]
     #[inline(always)]
     pub const fn int21(&self) -> bool {
         let val = (self.0 >> 21usize) & 0x01;
         val != 0
     }
-    #[doc = "SmartDMA hijack NVIC IRQ66"]
+    #[doc = "SmartDMA hijack NVIC IRQ75"]
     #[inline(always)]
     pub const fn set_int21(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 21usize)) | (((val as u32) & 0x01) << 21usize);
-    }
-    #[doc = "SmartDMA hijack NVIC IRQ67"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn int22(&self) -> bool {
-        let val = (self.0 >> 22usize) & 0x01;
-        val != 0
-    }
-    #[doc = "SmartDMA hijack NVIC IRQ67"]
-    #[inline(always)]
-    pub const fn set_int22(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 22usize)) | (((val as u32) & 0x01) << 22usize);
-    }
-    #[doc = "SmartDMA hijack NVIC IRQ77"]
-    #[must_use]
-    #[inline(always)]
-    pub const fn int23(&self) -> bool {
-        let val = (self.0 >> 23usize) & 0x01;
-        val != 0
-    }
-    #[doc = "SmartDMA hijack NVIC IRQ77"]
-    #[inline(always)]
-    pub const fn set_int23(&mut self, val: bool) {
-        self.0 = (self.0 & !(0x01 << 23usize)) | (((val as u32) & 0x01) << 23usize);
     }
 }
 impl Default for SmartDmaint {
@@ -2889,8 +2759,6 @@ impl core::fmt::Debug for SmartDmaint {
             .field("int19", &self.int19())
             .field("int20", &self.int20())
             .field("int21", &self.int21())
-            .field("int22", &self.int22())
-            .field("int23", &self.int23())
             .finish()
     }
 }
@@ -2899,7 +2767,7 @@ impl defmt::Format for SmartDmaint {
     fn format(&self, f: defmt::Formatter) {
         defmt::write!(
             f,
-            "SmartDmaint {{ int0: {=bool:?}, int1: {=bool:?}, int2: {=bool:?}, int3: {=bool:?}, int4: {=bool:?}, int5: {=bool:?}, int6: {=bool:?}, int7: {=bool:?}, int8: {=bool:?}, int9: {=bool:?}, int10: {=bool:?}, int11: {=bool:?}, int12: {=bool:?}, int13: {=bool:?}, int14: {=bool:?}, int15: {=bool:?}, int16: {=bool:?}, int17: {=bool:?}, int18: {=bool:?}, int19: {=bool:?}, int20: {=bool:?}, int21: {=bool:?}, int22: {=bool:?}, int23: {=bool:?} }}",
+            "SmartDmaint {{ int0: {=bool:?}, int1: {=bool:?}, int2: {=bool:?}, int3: {=bool:?}, int4: {=bool:?}, int5: {=bool:?}, int6: {=bool:?}, int7: {=bool:?}, int8: {=bool:?}, int9: {=bool:?}, int10: {=bool:?}, int11: {=bool:?}, int12: {=bool:?}, int13: {=bool:?}, int14: {=bool:?}, int15: {=bool:?}, int16: {=bool:?}, int17: {=bool:?}, int18: {=bool:?}, int19: {=bool:?}, int20: {=bool:?}, int21: {=bool:?} }}",
             self.int0(),
             self.int1(),
             self.int2(),
@@ -2921,9 +2789,7 @@ impl defmt::Format for SmartDmaint {
             self.int18(),
             self.int19(),
             self.int20(),
-            self.int21(),
-            self.int22(),
-            self.int23()
+            self.int21()
         )
     }
 }
@@ -3004,14 +2870,14 @@ impl SramXen {
     pub const fn set_ramc_xen(&mut self, val: bool) {
         self.0 = (self.0 & !(0x01 << 5usize)) | (((val as u32) & 0x01) << 5usize);
     }
-    #[doc = "This 1-bit field provides a mechanism to limit writes to the this register (and SRAM_XEN_DP) to protect its contents. Once set, this bit remains asserted until a system reset."]
+    #[doc = "This 1-bit field provides a mechanism to limit writes to this register (and SRAM_XEN_DP) to protect its contents. Once set, this bit remains asserted until a system reset."]
     #[must_use]
     #[inline(always)]
     pub const fn lock(&self) -> super::vals::SramXenLock {
         let val = (self.0 >> 31usize) & 0x01;
         super::vals::SramXenLock::from_bits(val as u8)
     }
-    #[doc = "This 1-bit field provides a mechanism to limit writes to the this register (and SRAM_XEN_DP) to protect its contents. Once set, this bit remains asserted until a system reset."]
+    #[doc = "This 1-bit field provides a mechanism to limit writes to this register (and SRAM_XEN_DP) to protect its contents. Once set, this bit remains asserted until a system reset."]
     #[inline(always)]
     pub const fn set_lock(&mut self, val: super::vals::SramXenLock) {
         self.0 = (self.0 & !(0x01 << 31usize)) | (((val.to_bits() as u32) & 0x01) << 31usize);
