@@ -9,20 +9,6 @@ transforms:
     to: adc::Adc
     type: Block
 
-  - !AddPeripherals
-    devices: .*
-    peripherals:
-      - name: ADC2
-        base_address: 0x400f0000
-        block: adc::Adc
-
-  - !AddPeripherals
-    devices: .*
-    peripherals:
-      - name: ADC3
-        base_address: 0x400f1000
-        block: adc::Adc
-
   - !MergeEnums
     from: adc::vals::Cmdl(\d+)(.+)
     to: adc::vals::$2
