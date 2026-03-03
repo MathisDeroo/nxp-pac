@@ -6,6 +6,7 @@ includes:
   - mcxa/can.yaml
   - mcxa/cdog.yaml
   - mcxa/crc.yaml
+  - mcxa/ctimer.yaml
   - mcxa/dma.yaml
   - mcxa/flexpwm.yaml
   - mcxa/gpio.yaml
