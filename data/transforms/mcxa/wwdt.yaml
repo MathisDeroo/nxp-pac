@@ -1,3 +1,3 @@
 transforms:
   - !DeleteEnums
-    from: wwdt0::vals::Wdtof
+    from: wwdt([0-9]+)?::vals::Wdtof
