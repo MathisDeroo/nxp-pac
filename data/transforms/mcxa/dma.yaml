@@ -13,3 +13,7 @@ transforms:
 
   - !DeleteEnums
     from: edma(_)?0_tcd0::vals::(S|D)mod
+
+  - !RenameInterrupts
+    from: DMA0_CH([0-9])
+    to: DMA_CH$1
