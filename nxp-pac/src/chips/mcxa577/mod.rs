@@ -1,6 +1,5 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
-#![no_std]
 #![doc = "Peripheral access API (generated using chiptool v0.1.0 (6a8c2aa 2026-01-27))"]
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
@@ -253,7 +252,7 @@ pub const PKC0: pkc::Pkc = unsafe { pkc::Pkc::from_ptr(0x4001_2000usize as _) };
 #[doc = "DMA MP"]
 pub const DMA1: dma1::Dma1 = unsafe { dma1::Dma1::from_ptr(0x4001_3000usize as _) };
 #[doc = "DMA TCD"]
-pub const EDMA1_TCD0: edma_1_tcd::Edma1Tcd =
+pub const EDMA_1_TCD0: edma_1_tcd::Edma1Tcd =
     unsafe { edma_1_tcd::Edma1Tcd::from_ptr(0x4001_4000usize as _) };
 #[doc = "no description available"]
 pub const ENET0: enet::Enet = unsafe { enet::Enet::from_ptr(0x4001_c000usize as _) };
@@ -314,7 +313,7 @@ pub const GPIO4: gpio::Gpio = unsafe { gpio::Gpio::from_ptr(0x4005_0000usize as 
 #[doc = "DMA MP"]
 pub const DMA0: dma::Dma = unsafe { dma::Dma::from_ptr(0x4008_0000usize as _) };
 #[doc = "DMA TCD"]
-pub const EDMA0_TCD0: edma_0_tcd::Edma0Tcd =
+pub const EDMA_0_TCD0: edma_0_tcd::Edma0Tcd =
     unsafe { edma_0_tcd::Edma0Tcd::from_ptr(0x4008_1000usize as _) };
 #[doc = "SYSCON"]
 pub const SYSCON: syscon::Syscon = unsafe { syscon::Syscon::from_ptr(0x4009_1000usize as _) };

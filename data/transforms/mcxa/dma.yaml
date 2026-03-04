@@ -1,4 +1,12 @@
 transforms:
+  - !RenamePeripherals
+    from: EDMA0_TCD0
+    to: EDMA_0_TCD0
+    
+  - !RenamePeripherals
+    from: EDMA1_TCD0
+    to: EDMA_1_TCD0
+    
   - !Rename
     from: edma0_tcd0::(.*)
     to: edma_0_tcd0::$1
