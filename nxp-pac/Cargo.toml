@@ -24,7 +24,7 @@ flavors = [
     { regex_feature = "mimxrt1.*",  target = "thumbv7em-none-eabihf" },
     { regex_feature = "mimxrt6.*",  target = "thumbv8m.main-none-eabihf" },
     { regex_feature = "mcx.*",      target = "thumbv8m.main-none-eabihf" },
-    { regex_feature = "lpc55s69.*", target = "thumbv8m.main-none-eabihf" }
+    { regex_feature = "lpc55s.*", target = "thumbv8m.main-none-eabihf" }
 ]
 
 [dependencies]
@@ -55,6 +55,9 @@ mcxn947_cm33_core0 = []
 mcxn947_cm33_core1 = []
 mcxa256 = []
 mcxa577 = []
+
+## LPC55S16
+lpc55s16 = []
 
 ## LPC55S69
 lpc55s69_cm33_core0 = []
