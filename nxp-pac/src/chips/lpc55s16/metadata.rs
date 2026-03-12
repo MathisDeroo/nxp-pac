@@ -1118,11 +1118,6 @@ pub const PERIPHERALS: &[Peripheral] = &[
                 name: "SCK",
                 pins: &[
                     SignalPin {
-                        pin: "PIO0_26",
-                        alt: 8u8,
-                        iomuxc_daisy: None,
-                    },
-                    SignalPin {
                         pin: "PIO0_28",
                         alt: 1u8,
                         iomuxc_daisy: None,

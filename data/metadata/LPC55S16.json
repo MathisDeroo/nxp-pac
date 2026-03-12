@@ -221,7 +221,6 @@
         {
           "name": "SCK",
           "pins": [
-            { "pin": "PIO0_26", "alt": 8 },
             { "pin": "PIO0_28", "alt": 1 },
             { "pin": "PIO1_4", "alt": 1 }
           ]
