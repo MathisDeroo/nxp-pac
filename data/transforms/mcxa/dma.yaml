@@ -3,49 +3,25 @@ transforms:
     from: EDMA0_TCD0
     to: EDMA_0_TCD0
     
-  - !RenamePeripherals
-    from: EDMA1_TCD0
-    to: EDMA_1_TCD0
-    
   - !Rename
     from: edma0_tcd0::(.*)
     to: edma_0_tcd0::$1
     type: All
 
   - !Rename
-    from: edma1_tcd0::(.*)
-    to: edma_1_tcd0::$1
-    type: All
-
-  - !Rename
     from: edma_0_tcd0::vals::Ssize
     to: edma_0_tcd0::vals::Size
-
-  - !Rename
-    from: edma_1_tcd0::vals::Ssize
-    to: edma_1_tcd0::vals::Size
 
   - !ModifyFieldsEnum
     fieldset: edma_0_tcd0::regs::TcdAttr
     field: dsize
     enum: edma_0_tcd0::vals::Size
 
-  - !ModifyFieldsEnum
-    fieldset: edma_1_tcd0::regs::TcdAttr
-    field: dsize
-    enum: edma_1_tcd0::vals::Size
-
   - !DeleteEnums
     from: edma_0_tcd0::vals::Int
 
   - !DeleteEnums
-    from: edma_1_tcd0::vals::Int
-
-  - !DeleteEnums
     from: edma_0_tcd0::vals::(S|D)mod
-
-  - !DeleteEnums
-    from: edma_1_tcd0::vals::(S|D)mod
 
   - !RenameInterrupts
     from: DMA0_CH([0-9]+)

@@ -83,111 +83,6 @@ pub struct DmaMux {
     pub request: u8,
 }
 
-/// Validate that common errors, such as conflicting alt modes and daisy registers are not duplicated.
-fn validate(metadata: &PinMetadata) -> anyhow::Result<()> {
-    if metadata.chips.is_empty() {
-        bail!("No chips");
-    }
-
-    let mut pins = HashSet::<&str>::with_capacity(metadata.pins.len());
-    let mut daisy_registers = HashSet::<&str>::new();
-
-    for pin in metadata.pins.iter() {
-        if !pins.insert(&pin.name) {
-            bail!("Duplicate pin: {}", pin.name);
-        }
-    }
-
-    let mut peripherals = HashSet::<&str>::with_capacity(metadata.peripherals.len());
-    let mut pin_alts = HashMap::<&str, HashSet<u8>>::new();
-
-    for peripheral in metadata.peripherals.iter() {
-        if !peripherals.insert(&peripheral.name) {
-            bail!("Duplicate peripheral: {}", peripheral.name);
-        }
-
-        let mut signals = HashSet::<&str>::with_capacity(peripheral.signals.len());
-
-        for signal in peripheral.signals.iter() {
-            if !signals.insert(&signal.name) {
-                bail!(
-                    "Duplicate signal for peripheral {}: {}",
-                    peripheral.name,
-                    signal.name
-                );
-            }
-
-            if let Some(ref daisy) = signal.iomuxc_daisy {
-                if !daisy_registers.insert(daisy) {
-                    bail!(
-                        "Multiple signals have same daisy value: {} (peripheral is {})",
-                        daisy,
-                        peripheral.name,
-                    );
-                }
-            }
-
-            let mut used_daisy_values = HashSet::<u8>::with_capacity(signal.pins.len());
-            let mut used_pins = HashSet::<&str>::with_capacity(signal.pins.len());
-
-            for pin in signal.pins.iter() {
-                if !pins.contains(pin.pin.as_str()) {
-                    bail!(
-                        "For peripheral {}, signal {}, pin {} is not defined in pins",
-                        peripheral.name,
-                        signal.name,
-                        pin.pin
-                    );
-                }
-
-                if !used_pins.insert(&pin.pin) {
-                    bail!(
-                        "For peripheral {}, signal {}, pin {} is defined more than once",
-                        peripheral.name,
-                        signal.name,
-                        pin.pin
-                    );
-                }
-
-                if !pin_alts.entry(&pin.pin).or_default().insert(pin.alt) {
-                    bail!(
-                        "pin {} has more than one signal defined for alt mode {}",
-                        pin.pin,
-                        pin.alt
-                    );
-                }
-
-                let pin_iomuxc = pin.iomuxc_daisy.is_some();
-                let signal_iomuxc = signal.iomuxc_daisy.is_some();
-                // None or both must be defined.
-                let incomplete = (pin_iomuxc && !signal_iomuxc) || (!pin_iomuxc && signal_iomuxc);
-
-                if incomplete {
-                    bail!(
-                        "For peripheral {}, signal {}, an IOMUXC daisy register is defined, but pin {} has no daisy value",
-                        peripheral.name,
-                        signal.name,
-                        pin.pin
-                    );
-                }
-
-                if let Some(daisy) = pin.iomuxc_daisy {
-                    if !used_daisy_values.insert(daisy) {
-                        bail!(
-                            "For peripheral {}, signal {}, a duplicate IOMUXC daisy value of {} is used.",
-                            peripheral.name,
-                            signal.name,
-                            daisy
-                        );
-                    }
-                }
-            }
-        }
-    }
-
-    Ok(())
-}
-
 fn generate_metadata(name: &str, interrupts: &[String], metadata: &PinMetadata) -> TokenStream {
     let pins = metadata.pins.iter().map(|pin| {
         let name = &pin.name;
@@ -322,7 +217,6 @@ pub fn generate_core(
     let metadata = fs::read_to_string(metadata).context("Read metadata")?;
     let metadata =
         serde_json::from_str::<PinMetadata>(&metadata).context("Deserialize metadata")?;
-    validate(&metadata)?;
 
     let svd_contents = fs::read_to_string(svd).context("Read SVD")?;
     let svd = svd_parser::parse(&svd_contents).context("Parse SVD")?;
